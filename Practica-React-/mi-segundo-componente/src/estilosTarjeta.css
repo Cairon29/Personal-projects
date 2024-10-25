@@ -1,0 +1,54 @@
+.tarjeta-animes {
+  width: 70%;
+  margin: 2.5rem auto;
+  padding: 0px;
+  border-radius: 3vh;
+  background-color: rgba(249, 244, 244, 0.849);
+  box-shadow: 0 10px 7px rgba(0, 0, 0, 0.119);
+}
+
+.contenedor-imagenes{
+  margin: 0;
+  width: 100%;
+  border-radius: 3vh 3vh 0px 0px;
+}
+
+.autor {
+  font-style: bold;
+  font-size: 14px;
+  margin: auto;
+}
+.titulo {
+  font-size: 28px;
+}
+
+.rating {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: rgb(200, 59, 97);
+  color: aliceblue;
+  border-radius:  0px 0px 3vh 3vh;
+}
+
+.puntuacion {
+  font-style: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0;
+}
+
+.informacion {
+  padding: 4vh;
+  text-align: center;
+}
+
+.autor {
+  margin: 0px;
+}

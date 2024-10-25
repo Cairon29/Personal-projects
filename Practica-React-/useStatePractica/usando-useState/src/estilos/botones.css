@@ -1,0 +1,42 @@
+
+
+.blackChart{
+    background-color: rgb(30, 30, 30);
+    border: white 3px solid;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+}
+
+.yellowChart{
+    background-color: rgb(240, 210, 63);
+    border: rgb(131, 57, 121) 3px solid;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+}
+
+.redWineChart{
+    background-color: rgb(116, 38, 42);
+    border: rgb(0, 0, 0) 3px solid;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+}
+
+.blueChart{
+    background-color: rgb(63, 181, 240);
+    border: rgb(255, 255, 255) 3px solid;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+}
+
+.greenChart{
+    background-color: rgb(81, 240, 63);
+    border: rgb(0, 0, 0) 3px solid;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+
+}

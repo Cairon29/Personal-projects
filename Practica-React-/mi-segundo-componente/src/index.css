@@ -1,0 +1,9 @@
+body {
+  margin: auto;
+  background: #2a2e41;
+  font-family: system-ui;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  
+}
