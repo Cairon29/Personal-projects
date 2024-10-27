@@ -246,8 +246,8 @@ let max = familia.reduce(function(max, val){
 let min = familia.reduce(function(max, val){ 
     return val.edad < max.edad ? val : max}, familia[0]);
 
-console.log("Miembro mayor: " + max.nombre + " de " + max.edad + " años");
-console.log("Miembro más joven: " + min.nombre + " de " + min.edad + " años");
+// console.log("Miembro mayor: " + max.nombre + " de " + max.edad + " años");
+// console.log("Miembro más joven: " + min.nombre + " de " + min.edad + " años");
 
 //  11
 
@@ -267,3 +267,12 @@ const detectorDePalindromos = ( word ) => {
 // detectorDePalindromos("otto");
 // detectorDePalindromos("Marvel");
 
+let word ='I am learning Web Dev'
+  .split(' ')
+  .map(s=>
+    s[0].toUpperCase() 
+    + s.slice(1).toLowerCase())
+  .join(' ')
+// console.log(word);
+
+console.log(null || 'string');
