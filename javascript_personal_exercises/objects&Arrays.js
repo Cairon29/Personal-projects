@@ -267,6 +267,10 @@ const detectorDePalindromos = ( word ) => {
 // detectorDePalindromos("otto");
 // detectorDePalindromos("Marvel");
 
+
+//  12
+
+// Analizar el output de el siguiente string.
 let word ='I am learning Web Dev'
   .split(' ')
   .map(s=>
@@ -275,4 +279,37 @@ let word ='I am learning Web Dev'
   .join(' ')
 // console.log(word);
 
-console.log(null || 'string');
+// 13
+// Analizar el output del siguiente console.log
+// console.log(null || 'string');
+
+// 14
+// BUSQUEDA BINARIA
+
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let target = 1;
+
+
+const  buscar = (arr, target) => {
+    let izquierda = 0;
+    let derecha = arr.length - 1;
+    let medio = Math.floor((izquierda + derecha) / 2)
+    while (izquierda <= derecha) {
+        // console.log(izquierda);
+        if (arr[medio] === target) {
+            // console.log(medio)
+            return medio;
+        }
+        if (arr[medio] < target) {
+            izquierda = medio + 1
+        }
+        if (arr[medio] > target) {
+            derecha = medio - 1
+        }
+
+    }
+    return -1;
+}
+
+buscar(numbers, target);
+
