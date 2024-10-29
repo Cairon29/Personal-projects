@@ -16,34 +16,12 @@ export const BotonColor = () => {
     }  
 
     useEffect(() =>{
-        // switch(colorId){
-        //     case colorId == 0:
-        //         () => setColor('blackChart')
-        //         break
-        //     case colorId == 1:
-        //         () => setColor('yellowChart')
-        //         break
-        //     case colorId == 2:
-        //         () => setColor('redWineChart')
-        //         break
-        //     case colorId == 3:
-        //         () => setColor('blueChart') 
-        //         break
-        //     case colorId == 4:
-        //         () => setColor('greenChart') 
-        //         break
-        //     case colorId == 5:
-        //         colorId - 5
-        //         break
-        // }
-        
         if (colorId === 0) setColor('greenChart')
         if (colorId === 1) setColor('blackChart')
         if (colorId === 2) setColor('yellowChart')
         if (colorId === 3) setColor('redWineChart')
         if (colorId === 4) setColor('blueChart')
         if (colorId === 5) setColorId(0)
-      
     },[colorId,cambioColor]);
 
     return (

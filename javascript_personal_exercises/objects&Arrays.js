@@ -212,11 +212,10 @@ const generadorListas = (articulo, valor) => {
 // generadorListas(frutas, precios);
 
 
-//  10
-
-// Tienes una lista de objetos con los nombres de los miembros de una familia. 
-// Este script debe devolver dos objetos con los datos (nombre y edad) del miembro
-// de mayor edad y del de menor edad.
+/*  10 */
+/* Tienes una lista de objetos con los nombres de los miembros de una familia. 
+Este script debe devolver dos objetos con los datos (nombre y edad) del miembro
+de mayor edad y del de menor edad. */
 
 let familia = [
     {nombre:'Juan', edad: 34}, 
@@ -284,20 +283,17 @@ let word ='I am learning Web Dev'
 // console.log(null || 'string');
 
 // 14
-// BUSQUEDA BINARIA
-
+/* BUSQUEDA BINARIA
+Buscar un elemento en un arreglo de 1000 elementos */
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let target = 1;
-
 
 const  buscar = (arr, target) => {
     let izquierda = 0;
     let derecha = arr.length - 1;
     let medio = Math.floor((izquierda + derecha) / 2)
     while (izquierda <= derecha) {
-        // console.log(izquierda);
         if (arr[medio] === target) {
-            // console.log(medio)
             return medio;
         }
         if (arr[medio] < target) {
@@ -306,10 +302,9 @@ const  buscar = (arr, target) => {
         if (arr[medio] > target) {
             derecha = medio - 1
         }
-
     }
     return -1;
 }
+// buscar(numbers, target);
 
-buscar(numbers, target);
 

@@ -6,6 +6,7 @@ import { Contador } from './assets/contador'
 import { Hover } from './assets/hover'
 import { ToDo } from './assets/todoList'
 import { TiempoEnPagina } from './assets/tiempoEnPagina'
+import AleatoryPhrase from './assets/aleatoryPhrase'
 
 import './App.css'
 
@@ -21,6 +22,7 @@ function App() {
       <Contador/>
       <Hover/>
       <ToDo/>
+      <AleatoryPhrase/>
     </div>
   )
 }
