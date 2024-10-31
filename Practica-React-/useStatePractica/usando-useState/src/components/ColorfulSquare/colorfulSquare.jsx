@@ -1,20 +1,14 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import '../estilos/botones.css'
-// Azul amarillo verde negro vinotinto
-export const BotonColor = () => {
+import { useState, useEffect } from "react";
+import { Square } from "./square";
+import './botones.css'
 
-    // mis use states
+export const ColorfulSquare = () => {
     const [colorId, setColorId] = useState(0)
     const [color, setColor] = useState('greenChart')
 
-   
-  
     const cambioColor = () => {
         setColorId(colorId + 1);
-        // console.log(colorId)
     }  
-
     useEffect(() =>{
         if (colorId === 0) setColor('greenChart')
         if (colorId === 1) setColor('blackChart')
@@ -25,11 +19,6 @@ export const BotonColor = () => {
     },[colorId,cambioColor]);
 
     return (
-        <section>
-            <button onClick={cambioColor}>C O L O R E S</button>
-            <div className={color}></div>
-        </section>
+        <Square handleBtn={cambioColor} style={color}/>
     )
 }
-
-

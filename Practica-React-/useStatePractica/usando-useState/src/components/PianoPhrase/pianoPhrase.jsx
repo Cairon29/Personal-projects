@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { PianoText } from "./pianoText";
 
-const AleatoryPhrase = () => {
+export const PianoPhrase = () => {
     const [newPhrase, setNewPhrase] = useState({})
     const phrases = [
         { id: 1, content: "The piano keys are black and white, but they sound like a million colors in your mind.", author: "Maria Cristina Mena" },
@@ -26,24 +27,10 @@ const AleatoryPhrase = () => {
     ];
 
     const handlePhrase = () => {
-        const randomRhrase = phrases[Math.round(Math.random() * phrases.length)];
-        setNewPhrase(randomRhrase);
+        const randomPhrase = phrases[Math.round(Math.random() * phrases.length)];
+        setNewPhrase(randomPhrase);
     }
     return (
-        <section>
-            <h2>✨🎹 Your piano phrase 🎹✨</h2>
-                {
-                    newPhrase.content 
-                    ?
-                        <>
-                            <p>{newPhrase.content}</p>
-                            <i>{newPhrase.author}</i>
-                        </>
-                    : <p>Click to generate a phrase</p>
-                }
-            <button onClick={handlePhrase}> New </button>
-        </section>
+        <PianoText content={newPhrase.content} author={newPhrase.author} handleBtn={handlePhrase}/>
     )
 }
-
-export default AleatoryPhrase;
