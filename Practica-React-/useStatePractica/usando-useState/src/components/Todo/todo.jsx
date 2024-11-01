@@ -1,6 +1,7 @@
+import { DisplayTodo } from "./displayTodo"
 import { useState } from "react";
 
-export const ToDo = () => {
+export const Todo = () => {
 
     const [lista, setLista] = useState([]);
     const [inputProducto, setinputProducto] = useState('')
@@ -25,30 +26,19 @@ export const ToDo = () => {
             setinputCantidad(undefined)
         }
     }
-    
-    // setLista([...lista,{product: inputProducto, amount: inputCantidad}])
-    // setinputProducto('')
-    // setinputCantidad()
     const deleteItem = (index) => {
         setLista(lista.filter((_, i) => i !== index));
     }
-    console.log(lista)
-    return (
-        <section>
-            <h3>¿Que quieres comprar?</h3>
-            <input type="text" placeholder="Producto" value={inputProducto} onChange={handleProduct}/>
-            <h3>¿Cuanto quieres comprar?</h3>
-            <input type="number" placeholder="Cantidad" value={inputCantidad} onChange={handleAmount}/>
-                <br/>
-            <button onClick={addToList}>Añadir</button>
-            <ul className="lista">
-                {lista.map((elemento, index) => (
-                <li key={index}> 
-                    {elemento.amount} de {elemento.product}
-                    <button className="mini button" onClick={() => deleteItem(index)}>×</button>
-                </li>
-                ))}
-            </ul>
-        </section>
-    )
+
+  return (
+    <DisplayTodo
+        vProduct={inputProducto}
+        vAmount={inputCantidad}
+        hdlProduct={handleProduct}
+        hdlAmount={handleAmount}
+        dltItem={deleteItem}
+        addItem={addToList}
+        list={lista}
+    />
+  )
 }

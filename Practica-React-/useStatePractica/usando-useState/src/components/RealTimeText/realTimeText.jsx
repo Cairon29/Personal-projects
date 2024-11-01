@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { TextDisplay } from "./textDisplay";
 
-export const Logs = () => {
+export const RealTimeText = () => {
     // si la palabra tiene un numero par de caracteres tendra un color, si no, otro.
     const [text, setText] = useState()
     const handleText = (e) => {
@@ -8,10 +9,9 @@ export const Logs = () => {
     }
 
     return(
-        <section>
-            <h2>Visualizador de texto</h2>
-            <input placeholder="Palabra aqui" type="text" onChange={handleText} value={text} />
-            <h4>{text}</h4>
-        </section>
+        <TextDisplay
+            text={text}
+            hdlText={handleText}
+        />
     )
 }

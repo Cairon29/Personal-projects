@@ -1,29 +1,20 @@
-import { Logs } from './assets/realTimeText'
-import { Ocultar } from './assets/textoOculto'
-import { ContadorTexto } from './assets/contadorTexto'
-import { Contador } from './assets/contador'
-import { Hover } from './assets/hover'
-import { ToDo } from './assets/todoList'
-import { TiempoEnPagina } from './assets/tiempoEnPagina'
-
 /* REFACTORED COMPONENTS */
-import { PianoPhrase } from './components'
-import { ColorfulSquare } from './components'
+import { PianoPhrase, ColorfulSquare, TimeActive, Todo, TextCounter, Factorial, HiddenText, RealTimeText} from './components'
 import './App.css'
 
 function App() {
 
   return (
     <div className='content'>
-      <TiempoEnPagina/>
-      <Logs/>
-      <Ocultar/>
-      <ContadorTexto/>  
-      <Contador/>
-      <Hover/>
-      <ToDo/>
+      <h1>Refactored Components</h1>
+      <TimeActive/>
       <PianoPhrase/>
       <ColorfulSquare/>
+      <Todo/>
+      <TextCounter/>
+      <Factorial/>
+      <HiddenText/>
+      <RealTimeText/>
     </div>
   )
 }
