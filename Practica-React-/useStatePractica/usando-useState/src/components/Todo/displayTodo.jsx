@@ -10,10 +10,11 @@ export const DisplayTodo = ({vProduct, vAmount, hdlProduct, hdlAmount, dltItem, 
             <br/>
         <button onClick={addItem}>Añadir</button>
         <ul className="lista">
-            {list.map((elemento, index) => (
-            <li key={index}> 
+            {list.map((elemento) => (
+            <li key={elemento.id}> 
                 {elemento.amount} de {elemento.product}
-                <button className="mini button" onClick={() => dltItem(index)}>×</button>
+                <button className="mini button" onClick={() => dltItem(elemento.id)}>×</button>
+                                        {/* ARREGLAR LA EJECUCION ANONIMA DE dltItem */}
             </li>
             ))}
         </ul>
