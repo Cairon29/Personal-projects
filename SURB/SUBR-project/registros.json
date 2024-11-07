@@ -1,0 +1,92 @@
+{
+  "lost-items": [
+    {
+      "Id_Objeto": 1,
+      "Id_Dueño": 2,
+      "Id_Encontrado": 3,
+      "Nombre_Objeto": "Teléfono Móvil",
+      "Descripcion": "iPhone negro con funda azul",
+      "Lugar_Perdido": "Sede 4",
+      "Fecha_Perdido": "15/09/2024",
+      "Id_Estado": 1,
+      "Id_Categoria": 1,
+      "estado": false
+    },
+    {
+      "Id_Objeto": 2,
+      "Id_Dueño": 3,
+      "Id_Encontrado": 3,
+      "Nombre_Objeto": "Cartera",
+      "Descripcion": "Negra con documentos personales",
+      "Lugar_Perdido": "Claustro",
+      "Fecha_Perdido": "13/09/2024",
+      "Id_Estado": 2,
+      "Id_Categoria": 2,
+      "estado": true
+    },
+    {
+      "Id_Objeto": 3,
+      "Id_Dueño": 3,
+      "Id_Encontrado": 4,
+      "Nombre_Objeto": "Llavero",
+      "Descripcion": "Plateado con varias llaves",
+      "Lugar_Perdido": "Torres",
+      "Fecha_Perdido": "12/09/2024",
+      "Id_Estado": 3,
+      "Id_Categoria": 4,
+      "estado": false
+    },
+    {
+      "id": "9844",
+      "Id_Objeto": "e16444fe-61ce-478b-a066-b3672d29ecfe",
+      "Id_Dueño": "94020b81-95b7-4985-b6b5-cf61d4c2362a",
+      "Id_Encontrado": "c9b9c038-2bd0-49cd-8744-d00eb67dfcb9",
+      "Nombre_Objeto": "sadasdas",
+      "Descripcion": "dasdas",
+      "Lugar_Perdido": "sdadasdada",
+      "Fecha_Perdido": "2024-11-14",
+      "Id_Estado": "5a1edf96-b198-4f54-9742-e6b4eeec98e0",
+      "Id_Categoria": "5b41dfe1-5c08-48a5-adec-4af015bf65a9",
+      "estado": false
+    },
+    {
+      "id": "553c",
+      "Id_Objeto": "836125ee-53ed-44e3-8000-a9ba3134abd6",
+      "Id_Dueño": "f24d1c62-4b2e-49a5-bf41-38ad625743b0",
+      "Id_Encontrado": "346f45e1-d5bf-4320-b46d-1457732be8b2",
+      "Nombre_Objeto": "",
+      "Descripcion": "",
+      "Lugar_Perdido": "",
+      "Fecha_Perdido": "",
+      "Id_Estado": "152be754-3e24-4ad8-9758-f26657984734",
+      "Id_Categoria": "140a758b-db18-419d-a744-d1c328c51ed5",
+      "estado": false
+    },
+    {
+      "id": "a828",
+      "Id_Objeto": "02eae273-d9f2-43a2-b6c7-e8f466c6bb54",
+      "Id_Dueño": "1cd77975-c0d9-4bb8-90ad-8c0a19a926cb",
+      "Id_Encontrado": "db241212-9661-4279-b1e3-e9ebdf25f852",
+      "Nombre_Objeto": "",
+      "Descripcion": "",
+      "Lugar_Perdido": "",
+      "Fecha_Perdido": "",
+      "Id_Estado": "fdbf4771-60d2-4fde-94b6-ed4cee555331",
+      "Id_Categoria": "152c9f73-688a-4332-86e5-06744dc5641f",
+      "estado": false
+    },
+    {
+      "id": "c4c1",
+      "Id_Objeto": "f0a834a7-8ee4-4823-b979-a681a00fe06a",
+      "Id_Dueño": "0af09cfd-d54d-4fd1-bc14-1184fe9d039f",
+      "Id_Encontrado": "1ed430eb-47ef-409f-8615-a277313ca731",
+      "Nombre_Objeto": "Iphone3",
+      "Descripcion": "rojo",
+      "Lugar_Perdido": "Teatro",
+      "Fecha_Perdido": "2024-11-20",
+      "Id_Estado": "4ecd7abd-dc38-4e4e-8391-c57971e81478",
+      "Id_Categoria": "7f59bff4-92fa-41f7-bd28-dec95e32f1db",
+      "estado": false
+    }
+  ]
+}

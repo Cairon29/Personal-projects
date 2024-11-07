@@ -1,0 +1,138 @@
+* {
+    font-family: sans-serif;
+}
+
+input {
+    background-color: #1a1a2e; /* Azul oscuro para el fondo */
+    color: #ffffff; /* Texto blanco */
+    border: 2px solid #ffd700; /* Amarillo dorado para el borde */
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  /* Efecto de foco en el input */
+  input:focus {
+    border-color: #ffdd33; /* Amarillo más brillante al enfocarse */
+    box-shadow: 0 0 8px rgba(255, 221, 51, 0.6);
+  }
+  
+  /* Placeholder en color blanco grisáceo */
+  input::placeholder {
+    color: #cccccc;
+    opacity: 0.8;
+  }
+  
+  /* Estilo para un botón de envío */
+  button {
+    background-color: #ffd700; /* Fondo amarillo */
+    color: #1a1a2e; /* Texto en azul oscuro */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #ffdd33; /* Amarillo más brillante al pasar el cursor */
+  }
+  
+  button:active {
+    background-color: #ffc300; /* Amarillo intenso al hacer clic */
+  }
+
+
+
+
+
+  /* Estilo del input tipo date */
+input[type="date"] {
+    appearance: none; /* Quitar estilo por defecto */
+    background-color: #1a1a2e; /* Fondo azul oscuro */
+    color: #ffffff; /* Texto blanco */
+    border: 2px solid #ffd700; /* Borde amarillo */
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  
+  /* Cambia el color del borde y agrega sombra cuando el input está enfocado */
+  input[type="date"]:focus {
+    border-color: #ffdd33; /* Amarillo brillante */
+    box-shadow: 0 0 8px rgba(255, 221, 51, 0.6);
+  }
+  
+  /* Placeholder para la fecha en color gris claro */
+  input[type="date"]::placeholder {
+    color: #cccccc;
+    opacity: 0.8;
+  }
+  
+  /* Estilo para el ícono del calendario */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffd700"%3E%3Cpath d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm-7-3h5v-2h-5v2zm-7 2h5v-4H5v4zm7 0h5v-4h-5v4z"/%3E%3C/svg%3E') no-repeat;
+    color: #ffd700; /* Ícono en amarillo */
+    opacity: 1;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+  }
+
+
+
+  /* Estilo general para la tarjeta */
+article {
+    background-color: #1a1a2e; /* Fondo azul oscuro */
+    color: #ffffff; /* Texto blanco */
+    border: 2px solid #ffd700; /* Borde amarillo */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 300px;
+    text-align: left;
+  }
+  
+  /* Estilo de hover para la tarjeta */
+  article:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(255, 215, 0, 0.4);
+  }
+  
+  /* Estilo de los títulos en negrita */
+  article p b {
+    color: #ffd700; /* Amarillo para resaltar títulos */
+  }
+  
+  /* Botón de eliminar */
+  button {
+    background-color: #ffd700; /* Fondo amarillo */
+    color: #1a1a2e; /* Texto azul oscuro */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #ffdd33; /* Amarillo más brillante en hover */
+    box-shadow: 0 4px 8px rgba(255, 221, 51, 0.6);
+  }
+  
+  button:active {
+    background-color: #ffc300; /* Amarillo intenso al hacer clic */
+  }

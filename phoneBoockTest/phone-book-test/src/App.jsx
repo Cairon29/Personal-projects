@@ -30,9 +30,12 @@ function App() {
     e.preventDefault()
     setName('')
     setNumber('')
+    
   }
   const handleDelete = () => {
     console.log('testing delete');
+
+    services.addLostItem()
   }
 
   return (
