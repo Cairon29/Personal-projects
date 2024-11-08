@@ -2,8 +2,29 @@
     font-family: sans-serif;
 }
 
+body {
+  margin: 0px;
+}
+
+#root {
+  background-color: #222938;
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+  ;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+h2 {
+  margin: 0px;
+}
+
+#form {
+  display: flex;
+}
+
 input {
-    background-color: #1a1a2e; /* Azul oscuro para el fondo */
+    background-color: #1b1a2e; /* Azul oscuro para el fondo */
     color: #ffffff; /* Texto blanco */
     border: 2px solid #ffd700; /* Amarillo dorado para el borde */
     border-radius: 5px;

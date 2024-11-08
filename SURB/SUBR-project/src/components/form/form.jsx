@@ -1,7 +1,7 @@
 export const Form = ({name, handleName, description, handleDescription, date, handleDate, foundIn, handleFoundIn, handleSubmit}) => {
   return (
     <>
-    <section>
+    <section id="form">
         <h2>Añade un objeto perdido</h2>
         <form onSubmit={handleSubmit}>
             <input placeholder="Nombre" type="text" value={name} onChange={handleName}/>
