@@ -83,7 +83,7 @@ function App() {
       <SearchInput search={search} handleSearch={handleInputSearch}/>
       <section>
         <h2>Items perdidos</h2>
-        <section className='lostItems'>
+        <section id='lostItems'>
         {
           !lostItems 
           ? <p>No hay items perdidos</p>
