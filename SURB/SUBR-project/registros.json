@@ -27,16 +27,42 @@
       "id": "fc08"
     },
     {
-      "id": "f4d1",
-      "Id_Objeto": "4734062b-6336-4942-811f-4b67ca290553",
-      "Id_Dueño": "ad42aabb-974c-4ff3-a3b1-58d7f04e0b33",
-      "Id_Encontrado": "fa4bc5b6-ca9f-43e5-be56-8515f6ff108d",
-      "Nombre_Objeto": "",
-      "Descripcion": "",
-      "Lugar_Perdido": "",
-      "Fecha_Perdido": "",
-      "Id_Estado": "f3a05179-af0e-47ff-bb92-9790380d1074",
-      "Id_Categoria": "bb9f0674-2689-42ee-8f14-03f09dc24ba4",
+      "id": "bfd2",
+      "Id_Objeto": "7594fe6f-bac4-4898-8b50-2c918d7051de",
+      "Id_Dueño": "fab5a485-1e34-49b6-b9cb-b8a504610ef5",
+      "Id_Encontrado": "1b298670-68d7-4436-87bb-4a2e803063cf",
+      "Nombre_Objeto": "Elver",
+      "Descripcion": "galarga",
+      "Lugar_Perdido": "Museo",
+      "Fecha_Perdido": "2024-11-14",
+      "Id_Estado": "3846caed-568a-4e8b-b54e-dff00518b161",
+      "Id_Categoria": "2aa19229-d8f4-45fe-b122-e6cbabc92ce2",
+      "estado": false
+    },
+    {
+      "id": "f957",
+      "Id_Objeto": "29334e87-6b71-4254-8e33-76553b215783",
+      "Id_Dueño": "f8c8b080-6d1a-4e58-8fec-2ac3849c9df8",
+      "Id_Encontrado": "44482c57-4bd2-45c1-9b05-33ec38b9a860",
+      "Nombre_Objeto": "Botella",
+      "Descripcion": "Mediana con manchas negras",
+      "Lugar_Perdido": "Parqueadero",
+      "Fecha_Perdido": "2024-11-14",
+      "Id_Estado": "e14a17ac-81e2-4bf2-90c2-1ab12dd725ab",
+      "Id_Categoria": "446bd813-e017-4658-b5ba-26d728c62d2d",
+      "estado": false
+    },
+    {
+      "id": "6e54",
+      "Id_Objeto": "14f0d3bf-7c38-46c5-8413-d500386a7cf5",
+      "Id_Dueño": "1d81e834-a487-49f6-a44f-e1b3760d3ef0",
+      "Id_Encontrado": "2da6041b-2dc5-4195-9330-68abf4763530",
+      "Nombre_Objeto": "carro",
+      "Descripcion": "bmw",
+      "Lugar_Perdido": "teatro",
+      "Fecha_Perdido": "2024-11-09",
+      "Id_Estado": "c63b0be9-a5eb-42cc-ac60-74f6ffdb702d",
+      "Id_Categoria": "f9603a4d-7740-4cea-8807-f660668259a9",
       "estado": false
     }
   ]

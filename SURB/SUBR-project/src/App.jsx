@@ -9,6 +9,7 @@ function App() {
   const [lostItems, setLostItems] =  useState([])
   const [search, setSearch] =  useState('')
 
+  // const [formObject, setFormObject] = useState({})
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
@@ -81,7 +82,7 @@ function App() {
   return (
     <>
       <SearchInput search={search} handleSearch={handleInputSearch}/>
-      <section>
+      <section className="lostItem-container">
         <h2>Items perdidos</h2>
         <section id='lostItems'>
         {
