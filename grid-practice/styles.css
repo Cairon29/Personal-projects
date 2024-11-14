@@ -56,6 +56,8 @@ h2 {
     font-family: Arial, sans-serif; 
 }
 
+
+
 /* GRID AREAS */
 
 #exercise-3 {
@@ -127,7 +129,7 @@ h2 {
 #exe3-footer {
     font-size: 20px;
     font-weight: bold;
-    height: 200px;           
+    height: 150px;           
     background-color: #cf91f9;
     border-radius: 8px;    
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1); 
@@ -137,3 +139,13 @@ h2 {
     grid-area: footer;
 }
 
+
+@media screen and ( max-width: 750px) {
+    #exercise-3 {
+        grid-template-areas: 
+        "header header header"
+        "aside aside aside"
+        "main main main"
+        "footer footer footer";
+    }
+}
