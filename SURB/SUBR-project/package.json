@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "json-server -p3001 --watch registros.json"
+    "server": "json-server -p3001 --watch lost-items-logs.json"
   },
   "dependencies": {
     "axios": "^1.7.7",

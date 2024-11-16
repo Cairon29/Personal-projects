@@ -6,8 +6,8 @@ const getLostItems = () => {
     return request.then(response => (response.data))
 }
 
-const addLostItem = newPerson => {
-    const request = axios.post(baseUrl, newPerson)
+const addLostItem = newLostItem => {
+    const request = axios.post(baseUrl, newLostItem)
     return request.then(response => (response.data))
 }
 
