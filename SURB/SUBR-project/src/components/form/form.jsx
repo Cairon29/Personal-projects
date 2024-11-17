@@ -3,7 +3,7 @@ export const Form = ({lostItemObject, hdlInputObject, handleSubmit}) => {
     <>
       <section id="form">
           <h2>Añade un objeto perdido</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} name="form">
 
               <label htmlFor="objeto"> Objeto:</label>
               <input 

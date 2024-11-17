@@ -24,32 +24,15 @@ function App() {
   }, [])
 
   const handleInputs = {
-    handleObjectName: (e) => {
-      console.log(e.target.value);
-      setFormObject({...formObject, object: e.target.value})
-    },
-    handleDescription: (e) => {
-      console.log(e.target.value);
-      setFormObject({...formObject, description: e.target.value})
-    },
-    handleDateLost: (e) => {
-      console.log(e.target.value);
-      setFormObject({...formObject, dateLost: e.target.value})
-    },
-    handleFoundIn: (e) => {
-      console.log(e.target.value);
-      setFormObject({...formObject, foundIn: e.target.value})
-    },
-    handleFoundBy: (e) => {
-      console.log(e.target.value);
-      setFormObject({...formObject, foundBy: e.target.value})
-    }
+    handleObjectName: (e) => setFormObject({...formObject, object: e.target.value}),
+    handleDescription: (e) => setFormObject({...formObject, description: e.target.value}),
+    handleDateLost: (e) => setFormObject({...formObject, dateLost: e.target.value}),
+    handleFoundIn: (e) => setFormObject({...formObject, foundIn: e.target.value}),
+    handleFoundBy: (e) => setFormObject({...formObject, foundBy: e.target.value})
   }
-   
   /* PENDING */
   const handleInputSearch = (e) => {
     setSearch(e.target.value)
-    console.log(e.target.value)
   }
 
   const handleFormSubmit = (e) => {
