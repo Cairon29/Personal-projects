@@ -16,4 +16,4 @@ const  deleteLostItem = id => {
     return request.then(response => (response.data))
 }
 
-export default {  getLostItems, addLostItem, deleteLostItem }
+export default { getLostItems, addLostItem, deleteLostItem }

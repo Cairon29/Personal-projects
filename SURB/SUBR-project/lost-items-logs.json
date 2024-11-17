@@ -1,34 +1,3 @@
 {
-  "lost-items": [
-    {
-      "id": "1",
-      "object": "Wallet",
-      "description": "Black leather wallet with cards and cash",
-      "dateLost": "2024-10-01",
-      "dateFound": "2024-10-10",
-      "foundIn": "Park bench",
-      "foundBy": "John Doe",
-      "state": false
-    },
-    {
-      "id": "2",
-      "object": "Keys",
-      "description": "Set of house and car keys on a blue keychain",
-      "dateLost": "2024-09-15",
-      "dateFound": "2024-09-18",
-      "foundIn": "Coffee shop",
-      "foundBy": "Jane Smith",
-      "state": false
-    },
-    {
-      "id": "552ba44e-d52b-4701-ac5d-f384f3b59254",
-      "object": "Iphone 12",
-      "description": "The worst phone (im poor)",
-      "dateLost": "2024-10-30",
-      "dateFound": "",
-      "foundIn": "My House",
-      "foundBy": "Sandra Liliana Navarro",
-      "state": false
-    }
-  ]
+  "lost-items": []
 }

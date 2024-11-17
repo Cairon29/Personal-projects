@@ -58,21 +58,21 @@ function App() {
 
     const newLostItem = {...formObject, id: uuidv4()}
     services.addLostItem(newLostItem)
-    .then(returnedItem => {
+    .then((returnedItem) => {
       setLostItems(lostItems.concat(returnedItem))
-      setFormObject({...formObject, object: ''})
-      setFormObject({...formObject, description: ''})
-      setFormObject({...formObject, dateLost: ''})
-      setFormObject({...formObject, foundIn: ''})
-      setFormObject({...formObject, foundBy: ''})
+      setFormObject({...formObject, object: ""})
+      setFormObject({...formObject, description: ""})
+      setFormObject({...formObject, dateLost: ""})
+      setFormObject({...formObject, foundIn: ""})
+      setFormObject({...formObject, foundBy: ""})
     })
   }
 
   /* PENDING */
-  const handleDeleteLostItem = (/* id */) => {
-    // services.deleteLostItem(id)
-    // .then(response => console.log(response));
-    // setLostItems(lostItems.map((item) => item.Id_Objeto !== id))
+  const handleDeleteLostItem = (id) => {
+    services.deleteLostItem(id)
+    .then(response => console.log(response));
+    setLostItems(lostItems.map((item) => item.id !== id))
     console.log('Trying to delete');
   }
 
@@ -83,10 +83,10 @@ function App() {
         <h2>Items perdidos</h2>
         <section id='lostItems'>
         {
-          !lostItems 
+          lostItems.length === 0 
           ? <p>No hay items perdidos</p>
           : lostItems.map((item) => (
-            <LostItem key={item.id} lostItem={item} handleFound={handleDeleteLostItem}/>
+            <LostItem key={item.id} lostItem={item} handleFound={handleDeleteLostItem(item.id)}/>
           ))
         }
         </section>
