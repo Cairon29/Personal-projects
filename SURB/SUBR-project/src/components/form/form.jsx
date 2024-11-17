@@ -1,13 +1,4 @@
 export const Form = ({lostItemObject, hdlInputObject, handleSubmit}) => {
-  
-  /* ON IT */
-  /* has to come an object by props to modify VALUES of the inputs*/
-  
-  
-  /* PENDING */
-  /* has to receive an object with the functions capable to controle the values of all inputs */
-  {/* cuando se elimine un elemento perdido se generara una fecha aleatoria para el dateFound */}
-
   return (
     <>
       <section id="form">
@@ -17,7 +8,7 @@ export const Form = ({lostItemObject, hdlInputObject, handleSubmit}) => {
               <label htmlFor="objeto"> Objeto:</label>
               <input 
                 placeholder="Ej: Iphone 12" 
-                name="objeto" 
+                id="objeto" 
                 type="text" 
                 value={lostItemObject.object} 
                 onChange={hdlInputObject.handleObjectName}
@@ -26,7 +17,7 @@ export const Form = ({lostItemObject, hdlInputObject, handleSubmit}) => {
               <label htmlFor="descripcion">Descripcion</label>
               <input 
                 placeholder="Descripcion" 
-                name="descripcion" 
+                id="descripcion" 
                 type="text" 
                 value={lostItemObject.description} 
                 onChange={hdlInputObject.handleDescription}
@@ -35,7 +26,7 @@ export const Form = ({lostItemObject, hdlInputObject, handleSubmit}) => {
               <label htmlFor="dateLost">Fecha de perdida</label>
               <input 
                 placeholder="Fecha de perdida" 
-                name="dateLost" 
+                id="dateLost" 
                 type="date" 
                 value={lostItemObject.dateLost} 
                 onChange={hdlInputObject.handleDateLost}
@@ -44,7 +35,7 @@ export const Form = ({lostItemObject, hdlInputObject, handleSubmit}) => {
               <label htmlFor="foundIn">Encontrado en:</label>
               <input 
                 placeholder="Teatro" 
-                name="foundIn" 
+                id="foundIn" 
                 type="text" 
                 value={lostItemObject.foundIn} 
                 onChange={hdlInputObject.handleFoundIn}
@@ -53,7 +44,7 @@ export const Form = ({lostItemObject, hdlInputObject, handleSubmit}) => {
               <label htmlFor="foundBy">Encontrado por:</label>
               <input 
                 placeholder="Tu nombre" 
-                name="foundBy" 
+                id="foundBy" 
                 type="text"
                 value={lostItemObject.foundBy} 
                 onChange={hdlInputObject.handleFoundBy}

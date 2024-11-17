@@ -4,9 +4,8 @@ import { SearchInput, Form, LostItem } from './components'
 import services from './services/dbServices'
 
 function App() {
-
-  const [lostItems, setLostItems] =  useState([])
-  const [search, setSearch] =  useState('')
+  const [lostItems, setLostItems] = useState([])
+  const [search, setSearch] = useState('')
   const [formObject, setFormObject] = useState({
     id: '',
     object: '',
@@ -21,6 +20,7 @@ function App() {
   useEffect(() => {
     services.getLostItems()
     .then(data => setLostItems(data))
+    .catch(err => console.error("Error fetching lost items:", err));
   }, [])
 
   const handleInputs = {
@@ -52,28 +52,31 @@ function App() {
     console.log(e.target.value)
   }
 
-  /* PENDING */
   const handleFormSubmit = (e) => {
     e.preventDefault()
-
     const newLostItem = {...formObject, id: uuidv4()}
     services.addLostItem(newLostItem)
     .then((returnedItem) => {
       setLostItems(lostItems.concat(returnedItem))
-      setFormObject({...formObject, object: ""})
-      setFormObject({...formObject, description: ""})
-      setFormObject({...formObject, dateLost: ""})
-      setFormObject({...formObject, foundIn: ""})
-      setFormObject({...formObject, foundBy: ""})
+      setFormObject({
+        id: '',
+        object: '',
+        description: '',
+        dateLost: '',
+        dateFound: '',
+        foundIn: '',
+        foundBy: '',
+        state: false
+      });
     })
   }
-
-  /* PENDING */
   const handleDeleteLostItem = (id) => {
+    /* cuando se elimine un elemento perdido se generara una fecha aleatoria para el dateFound */
     services.deleteLostItem(id)
-    .then(response => console.log(response));
-    setLostItems(lostItems.map((item) => item.id !== id))
-    console.log('Trying to delete');
+    .then(() => {
+      setLostItems(lostItems.filter((item) => item.id !== id))
+    })
+    .catch(err => console.error("Error deleting item:", err));
   }
 
   return (
@@ -83,10 +86,14 @@ function App() {
         <h2>Items perdidos</h2>
         <section id='lostItems'>
         {
-          lostItems.length === 0 
+          !lostItems
           ? <p>No hay items perdidos</p>
           : lostItems.map((item) => (
-            <LostItem key={item.id} lostItem={item} handleFound={handleDeleteLostItem(item.id)}/>
+            <LostItem 
+              key={item.id} 
+              lostItem={item} 
+              handleFound={() => handleDeleteLostItem(item.id)}
+            />
           ))
         }
         </section>
