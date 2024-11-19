@@ -49,7 +49,6 @@ export const Form = ({lostItemObject, hdlInputObject, handleSubmit}) => {
                 value={lostItemObject.foundBy} 
                 onChange={hdlInputObject.handleFoundBy}
               />
-              
               <button type="submit"> Añadir</button>
           </form>
       </section>

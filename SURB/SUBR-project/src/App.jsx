@@ -37,21 +37,25 @@ function App() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    const newLostItem = {...formObject, id: uuidv4()}
-    services.addLostItem(newLostItem)
-    .then((returnedItem) => {
-      setLostItems(lostItems.concat(returnedItem))
-      setFormObject({
-        id: '',
-        object: '',
-        description: '',
-        dateLost: '',
-        dateFound: '',
-        foundIn: '',
-        foundBy: '',
-        state: false
-      });
-    })
+    if (formObject.object && formObject.description && formObject.dateLost) {
+      const newLostItem = {...formObject, id: uuidv4()}
+      services.addLostItem(newLostItem)
+      .then((returnedItem) => {
+        setLostItems(lostItems.concat(returnedItem))
+        setFormObject({
+          id: '',
+          object: '',
+          description: '',
+          dateLost: '',
+          dateFound: '',
+          foundIn: '',
+          foundBy: '',
+          state: false
+        });
+      })
+    } else {
+      alert("Please fill all fields")
+    }
   }
   const handleDeleteLostItem = (id) => {
     /* cuando se elimine un elemento perdido se generara una fecha aleatoria para el dateFound */

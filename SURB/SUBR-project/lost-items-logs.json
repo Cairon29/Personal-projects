@@ -19,6 +19,26 @@
       "foundIn": "Cafeteria table",
       "foundBy": "",
       "state": false
+    },
+    {
+      "id": "f55aff05-9d76-44a6-adcf-bd07dc937e76",
+      "object": "Soda bottle",
+      "description": "500ml nice guys brand soda",
+      "dateLost": "2024-11-26",
+      "dateFound": "",
+      "foundIn": "Cinema",
+      "foundBy": "Sandra Liliana Navarro",
+      "state": false
+    },
+    {
+      "id": "9079db3e-068c-42fc-8a27-2e3162c9046b",
+      "object": "bunch of flowers",
+      "description": "Roses and tulipans tied with a red bow",
+      "dateLost": "2024-11-20",
+      "dateFound": "",
+      "foundIn": "",
+      "foundBy": "",
+      "state": false
     }
   ]
 }
