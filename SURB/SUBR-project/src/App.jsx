@@ -32,7 +32,7 @@ function App() {
   }
   /* PENDING */
   const handleInputSearch = (e) => {
-    setSearch(e.target.value)
+    setSearch(e.target.value);
   }
 
   const handleFormSubmit = (e) => {
@@ -58,7 +58,6 @@ function App() {
     }
   }
   const handleDeleteLostItem = (id) => {
-    /* cuando se elimine un elemento perdido se generara una fecha aleatoria para el dateFound */
     services.deleteLostItem(id)
     .then(() => {
       setLostItems(lostItems.filter((item) => item.id !== id))
@@ -75,13 +74,15 @@ function App() {
         {
           !lostItems
           ? <p>No hay items perdidos</p>
-          : lostItems.map((item) => (
-            <LostItem 
-              key={item.id} 
-              lostItem={item} 
-              handleFound={() => handleDeleteLostItem(item.id)}
-            />
-          ))
+          : lostItems
+            .filter((item) => item.object.toLowerCase().includes(search.toLowerCase()))
+            .map((item) => (
+              <LostItem 
+                key={item.id} 
+                lostItem={item} 
+                handleFound={() => handleDeleteLostItem(item.id)}
+              />
+            ))
         }
         </section>
       </section>
