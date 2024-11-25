@@ -6,6 +6,7 @@ import services from './services/dbServices'
 function App() {
   const [lostItems, setLostItems] = useState([])
   const [search, setSearch] = useState('')
+  const [filteredItems, setFilteredItems] = useState([])
   const [formObject, setFormObject] = useState({
     id: '',
     object: '',
@@ -30,11 +31,7 @@ function App() {
     handleFoundIn: (e) => setFormObject({...formObject, foundIn: e.target.value}),
     handleFoundBy: (e) => setFormObject({...formObject, foundBy: e.target.value})
   }
-  /* PENDING */
-  const handleInputSearch = (e) => {
-    setSearch(e.target.value);
-  }
-
+  
   const handleFormSubmit = (e) => {
     e.preventDefault()
     if (formObject.object && formObject.description && formObject.dateLost) {
@@ -64,13 +61,21 @@ function App() {
     })
     .catch(err => console.error("Error deleting item:", err));
   }
-
+  /* PENDING */
+  const handleInputSearch = (e) => {
+    setSearch(e.target.value);
+    const fltItems = lostItems.filter(item => item.object.toLowerCase().includes(search.toLowerCase()));
+    setFilteredItems((prev) => prev = fltItems);
+    console.log(filteredItems);
+  }
+  
   return (
     <>
       <SearchInput search={search} handleSearch={handleInputSearch}/>
       <section className="lostItem-container">
         <h2>Items perdidos</h2>
         <section id='lostItems'>
+          {/* PENDING REFACTOR */}
         {
           !lostItems
           ? <p>No hay items perdidos</p>

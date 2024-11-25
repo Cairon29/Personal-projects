@@ -1,16 +1,6 @@
 {
   "lost-items": [
     {
-      "id": "4",
-      "object": "Sunglasses",
-      "description": "Black Ray-Ban sunglasses in a soft case",
-      "dateLost": "2024-10-25",
-      "dateFound": "2024-10-26",
-      "foundIn": "Bus station",
-      "foundBy": "Bus driver",
-      "state": true
-    },
-    {
       "id": "5",
       "object": "Notebook",
       "description": "A spiral-bound notebook with handwritten notes",
@@ -35,6 +25,16 @@
       "object": "bunch of flowers",
       "description": "Roses and tulipans tied with a red bow",
       "dateLost": "2024-11-20",
+      "dateFound": "",
+      "foundIn": "",
+      "foundBy": "",
+      "state": false
+    },
+    {
+      "id": "3c8b21f8-0609-4b67-bb01-211c21c89717",
+      "object": "Laptop VICTUS 15",
+      "description": "A ryzen 5 5500h with 16gb of ram with a RTX 2050",
+      "dateLost": "2024-11-13",
       "dateFound": "",
       "foundIn": "",
       "foundBy": "",
