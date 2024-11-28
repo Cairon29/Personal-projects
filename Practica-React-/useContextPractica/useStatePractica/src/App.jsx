@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { YoutuberProvider } from './context/youtuber-context'
-import { GentlemanPrograming } from './components' 
+import { GentlemanPrograming, MiduDev } from './components' 
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +13,7 @@ function App() {
 
       <YoutuberProvider>
         <GentlemanPrograming/>
+        <MiduDev/>
       </YoutuberProvider>
     </>
   )

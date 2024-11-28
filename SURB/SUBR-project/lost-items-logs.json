@@ -1,26 +1,6 @@
 {
   "lost-items": [
     {
-      "id": "5",
-      "object": "Notebook",
-      "description": "A spiral-bound notebook with handwritten notes",
-      "dateLost": "2024-11-05",
-      "dateFound": "",
-      "foundIn": "Cafeteria table",
-      "foundBy": "",
-      "state": false
-    },
-    {
-      "id": "f55aff05-9d76-44a6-adcf-bd07dc937e76",
-      "object": "Soda bottle",
-      "description": "500ml nice guys brand soda",
-      "dateLost": "2024-11-26",
-      "dateFound": "",
-      "foundIn": "Cinema",
-      "foundBy": "Sandra Liliana Navarro",
-      "state": false
-    },
-    {
       "id": "9079db3e-068c-42fc-8a27-2e3162c9046b",
       "object": "bunch of flowers",
       "description": "Roses and tulipans tied with a red bow",
@@ -35,6 +15,16 @@
       "object": "Laptop VICTUS 15",
       "description": "A ryzen 5 5500h with 16gb of ram with a RTX 2050",
       "dateLost": "2024-11-13",
+      "dateFound": "",
+      "foundIn": "",
+      "foundBy": "",
+      "state": false
+    },
+    {
+      "id": "4713e6b8-3dcf-409f-8138-e66ba172f7ce",
+      "object": "Wrist Lace",
+      "description": "Golden wrist lace with a platinum heart",
+      "dateLost": "2024-11-21",
       "dateFound": "",
       "foundIn": "",
       "foundBy": "",

@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { v4  as uuidv4 } from 'uuid';
-import { SearchInput, Form, LostItem } from './components'
+import { SearchInput, Form, LostItem, ClicksMade } from './components'
 import services from './services/dbServices'
+import { globalClicks } from './context/ClicksContext';
 
 function App() {
+  const { incrementClicks } = useContext(globalClicks)
+
   const [lostItems, setLostItems] = useState([])
   const [search, setSearch] = useState('')
   const [filteredItems, setFilteredItems] = useState([])
@@ -38,6 +41,7 @@ function App() {
       const newLostItem = {...formObject, id: uuidv4()}
       services.addLostItem(newLostItem)
       .then((returnedItem) => {
+        incrementClicks();
         setLostItems(lostItems.concat(returnedItem))
         setFormObject({
           id: '',
@@ -58,6 +62,7 @@ function App() {
     services.deleteLostItem(id)
     .then(() => {
       setLostItems(lostItems.filter((item) => item.id !== id))
+      incrementClicks();
     })
     .catch(err => console.error("Error deleting item:", err));
   }
@@ -71,7 +76,11 @@ function App() {
   
   return (
     <>
-      <SearchInput search={search} handleSearch={handleInputSearch}/>
+      {/* <SearchInput search={search} handleSearch={handleInputSearch}/> */}
+      <SearchInput search={search} handleSearch={handleInputSearch}>
+        <ClicksMade/>
+      </SearchInput>
+
       <section className="lostItem-container">
         <h2>Items perdidos</h2>
         <section id='lostItems'>

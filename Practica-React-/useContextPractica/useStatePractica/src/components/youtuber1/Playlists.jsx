@@ -3,12 +3,16 @@ import { YoutuberContext } from "../../context/youtuber-context";
 
 export const Playlists = () => {
     const { gp } = useContext(YoutuberContext);
-    console.log(gp)
     return (
-    <>
         <ul>
-            <li>Playlist 1</li>
+            {gp.map((course) => (
+                <li key={gp.id}>
+                    <p>
+                        {course.playlist}  
+                        <b>Length:</b> {course.length}
+                    </p>
+                </li>
+            ))}
         </ul>
-    </>
     )
 }
