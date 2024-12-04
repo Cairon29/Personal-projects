@@ -4,6 +4,7 @@ import { YoutuberContext } from "../../context/youtuber-context";
 
 export const Playlists = () => {
 
+    // Pending for translation
     const { MiduDev } = useContext(YoutuberContext);
     return (
         <ul>
