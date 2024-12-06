@@ -1,11 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
 import { v4  as uuidv4 } from 'uuid';
-import { SearchInput, Form, LostItem, ClicksMade } from './components'
+import { SearchInput, Form, LostItem } from './components'
 import services from './services/dbServices'
-import { globalClicks } from './context/ClicksContext';
 
 function App() {
-  const { incrementClicks } = useContext(globalClicks)
 
   const [lostItems, setLostItems] = useState([])
   const [search, setSearch] = useState('')
@@ -76,10 +74,10 @@ function App() {
   
   return (
     <>
-      {/* <SearchInput search={search} handleSearch={handleInputSearch}/> */}
-      <SearchInput search={search} handleSearch={handleInputSearch}>
+      <SearchInput search={search} handleSearch={handleInputSearch}/>
+      {/* <SearchInput search={search} handleSearch={handleInputSearch}>
         <ClicksMade/>
-      </SearchInput>
+      </SearchInput> */}
 
       <section className="lostItem-container">
         <h2>Items perdidos</h2>
