@@ -19,9 +19,16 @@ export const YoutuberProvider = ({ children }) => {
         {playlist: 'CSS from 0', length: 4, id: youtuberId},
         {playlist: 'NodeJS course from 0', length: 7, id: youtuberId}
     ];
+    const MoureDev = [
+        {playlist: 'React Ultimate class. From 0 to expert', length: 17, id: youtuberId},
+        {playlist: 'Angular: From 0 to expert', length: 24, id: youtuberId},
+        {playlist: 'NextJs: From 0 with Tuti', length: 12, id: youtuberId},
+        {playlist: 'Hexagonal Architecture', length: 8, id: youtuberId },
+        {playlist: 'Technical interview for web programmers', length: 15, id: youtuberId}
+    ]
 
     return (
-        <YoutuberContext.Provider value={{gp, MiduDev}}>
+        <YoutuberContext.Provider value={{gp, MiduDev, MoureDev}}>
             {children}
         </YoutuberContext.Provider>
     )
