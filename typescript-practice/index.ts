@@ -78,6 +78,19 @@ const Johan : Person & Bachelor = {
   degree: 'Professional chef'
 }
 
+/* ARRAY'S */
+
+// There are two ways to declare an array with TypeScript
+// We have to specify the type of the elements in the array and use the square brackets to indicate that it's an array
+const myArray : number[] = [1, 2, 3, 4, 5];
+// We can also use the generic (Array) with the <type Sintax> to specify the type of the elements in the array
+const list: Array<number> = [1, 2, 3];
+
+/* TUPLES */
+
+// If we needed to use diferent types on a array we can use the tuple like this
+let person1: [string, number] = ['Marcia', 35];
+
 /*   Exercise - enums   */
 // Create a set of values that you can use in your code. 
 enum ContractStatus {
