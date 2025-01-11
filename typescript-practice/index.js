@@ -21,7 +21,7 @@ var unknownVar; // This is a better alternative to any since it forces us to che
 /*   TYPE ASSERTION   */
 var randomValue = 10;
 var value1 = randomValue;
-var value2 = randomValue.toUpperCase();
+// let value2 = (randomValue as string).toUpperCase();
 // This is like a value convertion. We are telling the compiler that we know the type of the value and we want to use it as an specific type.
 // The second way to translate a value from one type to another is using the <angle-bracket> syntax
 var value3 = randomValue;
@@ -60,6 +60,8 @@ var list = [1, 2, 3];
 /* TUPLES */
 // If we needed to use diferent types on a array we can use the tuple like this
 var person1 = ['Marcia', 35];
+// let person2: [string, number, string] = ['Marcia', 'Brazil', 35 ]; // This will return an error because the value order in the array has to be the same as the type declaration
+// also, we can't add more values to the array than the type declaration.
 /*   Exercise - enums   */
 // Create a set of values that you can use in your code. 
 var ContractStatus;

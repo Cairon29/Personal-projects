@@ -26,7 +26,7 @@ let unknownVar: unknown; // This is a better alternative to any since it forces 
 /*   TYPE ASSERTION   */
 let randomValue : unknown = 10;
 let value1 = randomValue as string;
-let value2 = (randomValue as string).toUpperCase();
+// let value2 = (randomValue as string).toUpperCase();
 // This is like a value convertion. We are telling the compiler that we know the type of the value and we want to use it as an specific type.
 
 // The second way to translate a value from one type to another is using the <angle-bracket> syntax
@@ -83,6 +83,8 @@ const Johan : Person & Bachelor = {
 // There are two ways to declare an array with TypeScript
 // We have to specify the type of the elements in the array and use the square brackets to indicate that it's an array
 const myArray : number[] = [1, 2, 3, 4, 5];
+const myArray3 : (number | string)[] = [1, 2, 'thre ', 4, 5];
+const myArray4 : number[] = [];
 // We can also use the generic (Array) with the <type Sintax> to specify the type of the elements in the array
 const list: Array<number> = [1, 2, 3];
 
@@ -90,6 +92,10 @@ const list: Array<number> = [1, 2, 3];
 
 // If we needed to use diferent types on a array we can use the tuple like this
 let person1: [string, number] = ['Marcia', 35];
+
+// let person2: [string, number, string] = ['Marcia', 'Brazil', 35 ]; // This will return an error because the value order in the array has to be the same as the type declaration
+// also, we can't add more values to the array than the type declaration.
+
 
 /*   Exercise - enums   */
 // Create a set of values that you can use in your code. 
