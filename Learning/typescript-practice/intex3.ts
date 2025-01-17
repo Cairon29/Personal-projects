@@ -32,10 +32,11 @@ let subtractThreeNumbers = (x: number, y: number, z = 0): number => x - y - z;
     from the function type definition.
 */
                 
+type Calculator = (x: number, y: number) => number;
 
-interface Calculator {
-    (x: number, y: number): number;
-}
+// interface Calculator {
+//     (x: number, y: number): number;
+// }
 
 /*  As far as TypeScript is concerned, these three statements are identical. */
 let addNumbers1: Calculator = (x: number, y: number): number => x + y;

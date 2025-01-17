@@ -70,5 +70,3 @@ var ContractStatus;
     ContractStatus[ContractStatus["Temp"] = 1] = "Temp";
     ContractStatus[ContractStatus["Apprentice"] = 2] = "Apprentice";
 })(ContractStatus || (ContractStatus = {}));
-
-
