@@ -42,3 +42,41 @@ type Calculator = (x: number, y: number) => number;
 let addNumbers1: Calculator = (x: number, y: number): number => x + y;
 let addNumbers2: Calculator = (number1: number, number2: number): number => number1 + number2;
 let addNumbers3: Calculator = (num1, num2) => num1 + num2;
+
+interface CountFruits {
+    (s: number, t: number, a: number, b: number, apples: number[], oranges: number[]): void;
+}
+
+const countApplesAndOranges1: CountFruits = (s, t, a, b, apples, oranges): void => {
+const countFruitsInRange = (fruits: number[], treePosition: number): number =>
+    fruits.reduce((count, fruit) => {
+    const landingPosition = fruit + treePosition;
+    return landingPosition >= s && landingPosition <= t ? count + 1 : count;
+    }, 0);
+
+const totalApples = countFruitsInRange(apples, a);
+const totalOranges = countFruitsInRange(oranges, b);
+
+console.log(`${totalApples}\n${totalOranges}`);
+};
+
+
+
+interface CountFruits {
+    (s: number, t: number, a: number, b: number, apples: number[], oranges: number[]) : void;
+}
+
+const countApplesAndOranges: CountFruits = (s, t, a, b, apples, oranges): void => {
+    const totalFruits = { apples: 0, oranges: 0}
+    
+    apples.forEach(apple => {
+        const appleLand = apple + a;
+        (appleLand >= s && appleLand <= t) && totalFruits.apples++
+    });
+    oranges.forEach(orange => {
+        const orangesLand = orange + b;
+        (orangesLand >= s && orangesLand <= t) && totalFruits.oranges++
+    });
+    
+    console.log(`${totalFruits.apples}\n${totalFruits.oranges}`)
+}
