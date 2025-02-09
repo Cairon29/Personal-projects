@@ -23,7 +23,7 @@ h2 {
     color: #f9ddbd;
 }
 
-#exercises{  
+#exercises { 
     display: grid;
     border-radius: 10px;
     border: solid 4px #7ca6e6;
@@ -39,10 +39,13 @@ h2 {
 }
 
 #header {
+    position: sticky;
+    top: 0;
     grid-area: header;
     align-content: center;
     text-align: center;
     border: solid 2px #7ca6e6;
+    background-color: #1e2a3ca4;
     height: 100px;
     font-size: large;
 }
@@ -57,7 +60,7 @@ h2 {
 
     & article {
         padding: 1em;
-        width: 80%;
+        width: 50%;
         margin: auto;
 
     }
@@ -67,3 +70,4 @@ h2 {
     grid-area: footer;
     border: solid 2px #e67cd6;
 }
+

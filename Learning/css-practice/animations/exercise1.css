@@ -3,6 +3,7 @@
     & div {
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 1em;
     }
     & button {
@@ -22,7 +23,7 @@
         This can be simplified by using the shorthand property:
                     ↓↓↓↓↓
         */
-        transition:   background-color, scale, 0.5s ease-out;
+        transition: background-color, scale, 0.5s ease-out;
     }
 
     & button:hover {
@@ -34,5 +35,28 @@
     & :nth-child(2):hover {
         /* ↓ Here we specify the second object will have a delay */
         transition-delay: .7s;
+    }
+
+    .stormtrooper {
+        box-sizing: border-box;
+        border: #ffffff 2px solid;
+        width: 150px;
+        height: 150px;
+        margin: 0px;
+        object-fit: contain;
+        overflow: hidden;
+        
+        & img {
+            width: 100%;
+            transition: .5s ease-in-out;
+        }
+
+        & :hover {
+            scale: 1.8;
+        }
+    }
+
+    & b {
+        color: #7ca6e6;
     }
 }
