@@ -47,6 +47,7 @@ b {
 
 #header {
     position: sticky;
+    z-index: 1;
     top: 0;
     grid-area: header;
     align-content: center;

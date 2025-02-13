@@ -1,0 +1,57 @@
+#exc-3 {
+    & h3 {
+        font-size: 24px;
+        text-align: center;
+        margin: auto;
+    }
+
+    
+}
+#ascii-1::before {
+    content: " This an emoji →→";
+    color: #7ca6e6;
+    border: #7ca6e6 solid 1px;
+    margin-right: 10px;
+}
+
+
+#ascii-2 {
+    width: max-content;
+    position: relative;
+    align-content: center;
+}
+
+#ascii-2::before {
+    content: "";
+    background: #e6b57c;
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+#ascii-3 {
+    width: 50%;
+    position: relative;
+    align-content: center;
+}
+
+#ascii-3::before {
+    content: "";
+    background: linear-gradient( 90deg, #e6b57c, #7ca6e6);
+    opacity: 1;
+    width: 0%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: .5s ease-out;
+
+}
+
+#ascii-3:hover::before {
+    width: 100%;
+}
