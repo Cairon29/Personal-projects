@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./exercise1.css">
     <link rel="stylesheet" href="./exercise2.css">
     <link rel="stylesheet" href="./exercise3.css">
+    <link rel="stylesheet" href="./exercise4.css">
     <link rel="stylesheet" href="./exerciseExperimental.css">
     <title>Animations practice</title>
 </head>
@@ -39,6 +40,7 @@
                     <br>
                     This happens because the box has the property of  <b>overflow: hidden</b>.
                 </p>
+                <div id="spin-1"></div>
             </article>
             <br>
             <article id="exc-2">
@@ -93,6 +95,27 @@
 
             <br>
 
+            <article id="exc-4">
+                <h2>Excercise 4: Key frames</h2>
+                <p><b>Keyframes</b> are used to define the animation of an element. They are used to define the different states of an animation. For example, you can define the initial state of an elementn, the state when the animation is in progress and the final state of the animation.</p>
+                <p>In this first box we are changing its background color as we do with transitions. Notice that the animation will be played only once. This Happends because we are using the <b>animation</b> without telling it to repeat.</p>
+                <p>We represent the state of the animation through <b>percentages</b>. In this case the <b>0%</b> will have a light red background color, the <b>50%</b> a light blue background and the <b>100%</b> will have a light green background color.
+                Once the animation is done, the element will return to its initial state (light red)</p>
+                </p>
+                <div id="keyframes-1"></div>
+                <br>
+                <p>In the second exercise we are spining a div with <b>keyframes</b> along the <b>transform</b> and <b>rotate</b> css tags.</p>
+                <p>As it can be seen, when the square finishes a rotation the color will go back to its initial state.</p>
+                <div id="keyframes-2"></div>
+                <br>
+                <p>Knowing that the square is only going forwards in its animation we can try to make it turn forward an backwards once it has finished its rotation with the <b>alternate</b> property.</p>
+                <div id="keyframes-3"></div>
+                <p>In this box we will play with <b>hover</b> and <b>animations</b>. Once you hover it will start spining.</p>
+                <div id="keyframes-4"></div>
+            </article>
+
+            <br>
+
             <article id="exc-exp">
                 <h2>Exercise experimental</h2>
                 <p>
@@ -103,7 +126,6 @@
                     <div class="box" style="--i:2;"></div>
                 </div>
             </article>
-
         </main>
         <footer id="footer">foot</footer >
     </section>

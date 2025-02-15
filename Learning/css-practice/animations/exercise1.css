@@ -56,3 +56,15 @@
         }
     }
 }
+
+#spin-1 {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    background-color: aliceblue;
+    transition: 1.5s ease-in-out;
+}
+
+#spin-1:hover {
+    transform: rotate(720deg);
+}
