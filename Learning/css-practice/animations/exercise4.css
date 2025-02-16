@@ -48,7 +48,7 @@
 }
 
 #keyframes-4:hover {
-    animation: spin-2 1s linear both;
+    animation: spin-2 1s linear infinite;
 }
 
 @keyframes spin-2 {
@@ -58,6 +58,21 @@
     100% {
         background-color: #7ca6e6;
         transform: rotate(360deg);
+    }
+}
+
+#keyframes-5 {
+    background-color: #7ca6e6;
+    animation: moving-box-1 2s linear infinite alternate;
+}
+
+@keyframes moving-box-1 {
+    0% {
+        transform: translate(-100px , 0px);
+    }
+
+    100% {
+        transform: translate(100px, 0px);
     }
 }
 

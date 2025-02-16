@@ -1,0 +1,44 @@
+p {
+    width: 50%;
+    margin: auto;
+}
+
+img {
+    margin: auto;
+    height: 300px;
+    width: auto;
+}
+
+.showcase p {
+    text-align: center;
+}
+
+.card {
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    & h3 {
+        text-align: center;
+    }
+}
+
+#progress-bar {
+    margin: auto;
+    width: 0%;
+    height: 3px;
+    background-color: white;
+    animation: progress-grow auto linear;
+    animation-timeline: scroll(root block);
+}
+
+@keyframes progress-grow {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        background-color: rgb(255, 0, 0);
+        width: 100%;
+    }
+}
