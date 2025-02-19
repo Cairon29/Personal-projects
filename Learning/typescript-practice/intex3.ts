@@ -80,3 +80,23 @@ const countApplesAndOranges: CountFruits = (s, t, a, b, apples, oranges): void =
     
     console.log(`${totalFruits.apples}\n${totalFruits.oranges}`)
 }
+
+// Convert 12 hours format to 24 hours format
+
+function timeConversion(s: string): string {
+    let hour = parseInt(s.slice(0, 2));
+    let min = s.slice(3, 5);
+    let sec = s.slice(6, 8);
+    let am = s.slice(-2).toLowerCase() === 'am';
+
+    let militarHour: number | string = hour;
+
+    if (hour === 12) {
+        militarHour = am ? '00' : 12;
+    } else if (!am) {
+        militarHour = hour + 12;
+    }
+    militarHour = militarHour.toString().length === 1 ? '0' + militarHour : militarHour.toString();
+
+    return `${militarHour}:${min}:${sec}`;
+}
