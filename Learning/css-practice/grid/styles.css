@@ -1,13 +1,48 @@
 body {
     background-color: #1e1e2f;
     font-family: Arial, sans-serif;
-    margin : 0;
+    margin : auto;
     text-align: center;
 }
 h2 {
     color: #f7f7f7;
     font-weight: bold;
 }
+
+input {
+    width: 60%;
+    border-style: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: #1e1e2f;
+}
+
+input:focus {
+    border: none;
+}
+
+button {
+    width: 60%;
+    color: white;
+    font-weight: bold;
+    padding: 10px 32px;
+    border-radius: 10px;
+    background-color: #1e1e2f;
+    border-style: none;
+    border: white solid 1px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #4a4a7b51;
+    }
+    &:active {
+        background-color: #1414e351;
+    }
+}
+
+
+
 
 
 /* COLUMN POSITIONING */
@@ -88,7 +123,7 @@ h2 {
 #exe3-aside {
     font-size: 20px;
     font-weight: bold;       
-    background-color: #91f9db;
+    background-color: #91f9db;  
     border-radius: 8px;    
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1); 
     text-align: center;      
@@ -139,6 +174,199 @@ h2 {
     grid-area: footer;
 }
 
+/* _____________________________________ */
+
+#exercise-4 h2 {
+    color: rgb(16, 33, 47);
+}
+
+#exercise-4 {
+    display: grid;
+    padding: 1em;
+    grid-template-columns: minmax(200px, 1fr) repeat(2, 1fr);
+    grid-template-rows: auto auto auto auto;
+    gap: 1em;
+    grid-template-areas: 
+    "header header header"
+    "nav nav nav"
+    "main main aside"
+    "footer footer footer";
+}
+
+#exe4-header {
+    grid-area: header;
+    background-color: #91aef9;
+}
+
+#exe4-nav {
+    grid-area: nav;
+    background-color: #ffffff;
+    position: sticky;
+
+}
+
+#exe4-nav ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    & a {
+        height: 100%;
+        text-decoration: none;
+        color: rgb(16, 33, 47);
+        font-weight: bold;
+    }
+}
+
+#exe4-nav li {
+    height: 50px;
+    padding: 0.5em;
+    border-radius: 8px;
+    align-content: center;
+    transition: background-color 0.3s ease;
+}
+
+#exe4-nav li  :hover {
+   background-color: #4a4a7b51;
+}
+
+#exe4-main {
+    grid-area: main;
+    background-color: #f991ad;
+    padding-bottom: 50px;
+}
+
+#exe4-main article {
+    margin: auto;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    padding: 1em;
+
+    & div {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #1e1e2f;
+    }
+    & h3 {
+        color: #91aef9;
+    }
+    & p {
+        color: white;
+        width: 70%;
+        margin: auto;
+        text-align: left;
+    }
+}
+
+#exe4-aside {
+    grid-area: aside;
+    background-color: #91f9db;
+}
+
+#exe4-aside section {
+    position: sticky;
+    top: 20%;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+#exe4-aside section div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#spinning-img {
+    margin: auto;
+    width: 40%;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#exe4-footer {
+    height: 70px;
+    align-content: center;
+    grid-area: footer;
+    background-color: #cf91f9;
+}
+/* __________________ */
+
+#exercise-5 {
+    background-color: white;
+    display: grid;
+    padding: 1em;
+    grid-template-columns: minmax(200px, 1fr) repeat(2, 1fr);
+    grid-template-rows: auto auto auto auto;
+    gap: 1em;
+    grid-template-areas: 
+    "header header header"
+    "nav nav nav"
+    "main main aside"
+    "footer footer footer";
+}
+
+#exe5-header {
+    grid-area: header;
+    background-color: #a4a4a4;
+    border-radius: 10px;
+}
+
+#exe5-nav {
+    grid-area: nav;
+    border-radius: 10px;
+    height: 50px;
+    background-color: #414141;
+}
+
+#exe5-main {
+    grid-area: main;
+    background-color: #a4a4a4;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    border-radius: 10px;
+
+    & article {
+        width: 90%;
+        height: 50px;
+        background-color: #444444;
+        border-radius: 10px;
+    }
+}
+
+#exe5-aside {
+    border-radius: 10px;
+    grid-area: aside;
+    background-color: #a4a4a4;
+}
+#exe5-footer {
+    border-radius: 10px;
+    grid-area: footer;
+    height: 50px;
+    background-color: #a4a4a4;
+}
 
 @media screen and ( max-width: 750px) {
     #exercise-3 {
@@ -146,6 +374,24 @@ h2 {
         "header header header"
         "aside aside aside"
         "main main main"
+        "footer footer footer";
+    }
+
+    #exercise-4 {
+        grid-template-areas:
+        "header header header"
+        "nav nav nav"
+        "main main main"
+        "aside aside aside"
+        "footer footer footer";
+    }
+
+    #exercise-5 {
+        grid-template-areas:
+        "header header header"
+        "nav nav nav"
+        "main main main"
+        "aside aside aside"
         "footer footer footer";
     }
 }
