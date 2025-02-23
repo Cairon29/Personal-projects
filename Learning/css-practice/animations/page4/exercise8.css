@@ -1,0 +1,37 @@
+
+
+#header {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#header h1 {
+    width: max-content;
+    border-radius: 0px;
+    border: solid 5px transparent;
+    padding: 10px;
+    margin: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: 
+        typewritter 3s steps(23) forwards,
+        blink .5s steps(1) infinite alternate; 
+}
+
+@keyframes typewritter {
+    from {
+        width: 0%;
+    }   
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-right: solid 5px #ffff;
+    }
+}

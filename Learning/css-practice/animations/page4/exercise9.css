@@ -1,0 +1,58 @@
+#exe-9 {
+    display: inline-flex;
+    justify-content: center;
+}
+
+#exe-9 p {
+    font-weight: bold;
+    font-size: 22px;
+    color: lightskyblue;
+    line-height: 28px;
+}
+
+#exe-9 ul {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+
+
+    list-style: none;
+    font-weight: bold;
+    font-size: 22px;
+    
+    line-height: 28px;
+    height: 28px;
+    overflow: hidden;
+}
+
+.typing-options {
+    position: relative;
+}
+
+.typing-options::after {
+    left: 0;
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: #1e1e2f;
+    border-left: white solid 2px;
+    animation: 
+        typing-types 1.5s steps(12) forwards,
+        blink-left 0.5s steps(1) infinite alternate;
+}
+
+@keyframes  typing-types{
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes blink-left {
+    50% {
+        border-left: transparent;
+    }
+}

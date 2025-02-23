@@ -1,0 +1,38 @@
+#main {
+    padding-bottom: 50px;
+}
+
+#exe-7 {
+    margin: auto;
+    width: 90%;
+    height: 400px;
+    border: solid 2px white;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.img-container {
+    width: 400px;
+    border: solid 2px white;
+    overflow: hidden;
+}
+.img-container img {
+    height: 200px;
+    width: auto;
+    animation: move-in-enhanced auto linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 20%;
+}
+@keyframes move-in-enhanced {
+    0% {
+        translate: -200px 0px;
+    }
+    100% {
+        translate: 0px 0px;
+    }
+}
+

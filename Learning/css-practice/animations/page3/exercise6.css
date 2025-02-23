@@ -76,7 +76,7 @@ img {
 @keyframes appearing-content {
     0% {
         opacity: 0;
-        translate: 0 100px;
+        translate: 100px 0;
     }
 
     100% {
