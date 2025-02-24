@@ -1,0 +1,48 @@
+#exe-11 {
+    margin: auto;
+}
+
+#icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    & a {
+        box-sizing: border-box;
+        background-color: aliceblue;
+        border-radius: 50%;
+        padding: 10px;
+        width: 70px;
+        height: 70px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.img-container::before {
+    content: attr(brand-name);
+    position: absolute;
+
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: var(--color);
+    color: white;
+
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(0px)  rotate(30deg);
+    transition: all 0.3s ease-in-out;
+}
+
+.img-container:hover::before {
+    opacity: 1;
+    transform: translateY(-60px) rotate(0deg);
+}
+
+.img-container:hover {
+    background-color: var(--color);
+}

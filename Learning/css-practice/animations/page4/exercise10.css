@@ -1,0 +1,52 @@
+#box-shadows {
+    position: relative;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ↓↓↓ "--" is the way to declare a new property name */
+@property --angle{
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+#box-shadows::after, #box-shadows::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    background-image: conic-gradient(
+        from var(--angle),
+        rgb(255, 255, 0),
+        rgb(255, 0, 0),
+        rgb(255, 255, 0)
+    );
+    z-index: -1;
+    border-radius: 10px;
+    padding: 10px;
+
+    animation: spining-shadow-box 2s linear infinite;
+}
+
+#box-shadows::before {
+    filter: blur(10px);
+    opacity: .7;
+}
+
+@keyframes spining-shadow-box {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
