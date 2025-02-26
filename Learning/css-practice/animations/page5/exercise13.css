@@ -1,0 +1,147 @@
+body {
+    overflow-x: hidden;
+}
+
+/* This code avoids the sticky header remain sticky and keep its original color */
+#apex-header {
+    background-color: brown;
+}
+
+#exe-13 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.apex-card {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 32px;
+    
+
+    & h2 {
+        color: var(--color);
+    }
+    
+}
+
+.apex-img {
+    width: 400px;
+}
+
+.fade-in {
+    animation: fade-in 1s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateX(200px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.appear-in {
+    z-index: -1;
+    /* animation: move-in-enhanced auto linear both; */
+    animation: animate-scale-in-enhanced linear both;
+    animation-timeline: view();
+    /* animation-range: entry 20% cover 25%; */
+    
+}
+
+.horizontal-fade-in {
+    animation: animate-horizontal-fade-in-enhanced ease-in-out both;
+    animation-timeline: view();
+}
+
+@keyframes animate-horizontal-fade-in-enhanced {
+    entry 0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    entry 100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    exit 0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    exit 90% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes animate-scale-in-enhanced {
+    entry 0% {
+        scale: 0;
+        opacity: 0;
+    }
+
+    entry 50% {
+        scale: 1;
+        opacity: 1;
+    }
+
+    exit 0% {
+        scale: 1;
+        opacity: 1;
+    }
+
+    exit 60% {
+        scale: 0;
+        opacity: 0;
+    }
+}
+
+.move-out {
+    animation: move-out-enhanced ease-in-out both;
+    animation-timeline: view();
+}
+
+@keyframes move-in-enhanced {
+    0% {
+        scale: 0;
+        opacity: 0;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+@keyframes move-out-enhanced {
+    entry 0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    entry 100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    exit 0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    exit 100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
