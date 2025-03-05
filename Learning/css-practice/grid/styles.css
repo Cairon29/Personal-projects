@@ -368,6 +368,92 @@ button {
     background-color: #a4a4a4;
 }
 
+#exercise-6 {
+    margin: auto;
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 
+        "header header"
+        "nav nav"
+        "main aside"
+        "footer footer";
+    padding: 1em;
+    padding-bottom: 100px;
+    gap: 1em;
+}
+
+#exe6-header {
+    grid-area: header;
+    background-color: #91aef9;
+    height: 100px;
+}
+
+#exe6-nav {
+    grid-area: nav;
+    background-color: #91f9db;
+    height: 100px;
+}
+
+#exe6-main {
+    grid-area: main;
+    background-color: #f991ad;
+    height: 100px;
+}
+
+#exe6-aside {
+    grid-area: aside;
+    background-color: #91f9db;
+    height: 100px;
+}
+
+#exe6-footer {
+    grid-area: footer;
+    background-color: #cf91f9;
+    height: 100px;
+}
+
+#exercise-7 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 80%;
+    height: 600px;
+    margin: 0px auto;
+}
+
+.caja {
+    border: 1px solid black;
+    background: white;
+    color: black;
+    font-weight: bold;
+    width: 200px;
+    height: 200px;
+    line-height: 120px;
+    text-align: center;
+    margin: 15px;
+}
+
+.c1{
+    background: rgb(159, 223, 80);
+    order: 1;
+    flex-grow: 1;
+    flex-basis: 50%;
+}
+.c2{
+    background: rgb(128, 220, 220);
+    order: 2;
+    flex-grow: 1;
+    flex-basis: 30%;
+}
+.c3{
+    background: rgb(187, 129, 221);
+    order: 3;
+    flex-grow: 5;
+}
+
 @media screen and ( max-width: 750px) {
     #exercise-3 {
         grid-template-areas: 
