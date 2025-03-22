@@ -9,6 +9,9 @@
 function prepareUniqueGifts(gifts: number[]): number[] {
     const preparedGifts: number[] = [];
   
+    let variable1 = 0;
+    let variable2: number = 0
+
     gifts.forEach((gift) => {
       if (!preparedGifts.includes(gift))preparedGifts.push(gift)
     })
