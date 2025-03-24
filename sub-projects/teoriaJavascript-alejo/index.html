@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teoria</title>
+</head>
+<body>
+
+    <section class="seccion-ejercicios">
+        <h2>Datos primitivos</h2>
+        <h3>Number</h3>
+        <article>
+            <p>
+                Es un tipo de dato numérico, ya sea enteros o de punto flotante, la forma en la cual se declara esta variable es la siguiente: 
+                Cualquier parámetro pasado al new Number() que no sea un número (por ejemplo, la "A"), dará como resultado un valor NaN (Not A Number).
+            </p>
+            <div>
+                <img src="./public/teoriaPrimitivos/teoriaNumber.png" alt="">
+            </div>
+        </article>
+        <h3>String</h3>
+        <article>
+            <p>
+                se utiliza para representar cadenas de textos, en donde cada elemento en el string ocupa una posición en la cadena. En el caso de Js las cadenas de texto son inmutables (una vez que se crean ya no es
+                posible modificarlas), Para englobar los textos, se pueden utilizar tres tipos de comillas comillas simples ('), comillas dobles ("), Backticks (`)
+            </p>
+            <div>
+                <img src="./public/teoriaPrimitivos/teoriaString.png" alt="">
+            </div>
+        </article>
+        <h3>Boolean</h3>
+        <article>
+            <p>
+                Es un tipo de dato el cual puede tener alguno de estos dos calores posibles: true, false. El cual se utiliza para representar estados lógicos o condiciones como la respuesta a una afirmación, la veracidad
+                de una prueba o el resultado de una comparación.
+            </p>
+            <div>
+                <img src="./public/teoriaPrimitivos/teoriaBoolean.png" alt="">
+            </div>
+        </article>
+        <h3>Undefined</h3>
+        <article>
+            <p>
+                representa la ausencia del valor o la inicialización de una variable. Es el valor asignado automáticamente a una variable que ha sido declarada, pero que no ha sido inicializada con un valor explícito.
+                No debe confundirse con Null, que es otro valor que indica la ausencia de valor, pero con una semántica diferente.
+            </p>
+            <div>
+                <img src="./public/teoriaPrimitivos/teoriaUndefined.png" alt="">
+            </div>
+        </article>
+        <h3>Null</h3>
+        <article>
+            <p>
+                representa una referencia que apunta, a una inexistente o invalido objeto o dirección. En otras palabras, es un valor nulo o “vacío”
+            </p>
+            <div>
+                <img src="./public/teoriaPrimitivos/teoriaNull.png" alt="">
+            </div>
+        </article>
+        <h3>Symbol</h3>
+        <article>
+            <p>
+                Es un objeto incorporado para añadir claves de propiedades únicas a un objeto que no sean iguales a las claves que cualquier otro código pueda añadir al objeto, y que están ocultas de cualquier mecanismo que otro código utilice normalmente para acceder al objeto
+            </p>
+            <div>
+                <img src="./public/teoriaPrimitivos/teoriaSymbol.png" alt="">
+            </div>
+        </article>
+        <h3>BigInt</h3>
+        <article>
+            <p>Es un dato numérico el cual representa los números enteros con más “precisión” o más extensa.</p>
+            <div>
+                <img src="./public/teoriaPrimitivos/teoriaBignint.png" alt="">
+            </div>
+        </article>
+    </section>
+    <section class="seccion-ejercicios">
+        <h2>Condicionales if</h2>
+        <article>
+            <p>
+                Evalúa una condición y ejecuta un bloque de código si la condición es verdadera (if), si es falsa otra condición será ejecutada (else) 
+                También puede a ver sentencias con múltiples selecciones, La estructura else if se usa cuando hay más de dos posibles casos. Se evalúan las condiciones de arriba hacia abajo y se ejecuta solo el primer bloque cuyo if o else if sea verdadero
+            </p>
+            <div>
+                <img src="./public/teoriaCondicionales.png" alt="">
+            </div>
+        </article>
+        <article>
+            <ul>
+                <li>Bucle for – Para repeticiones con un número determinado de iteraciones.</li>
+                <li>Bucle while – Se ejecuta mientras una condición sea verdadera.</li>
+                <li>Bucle do...while – Similar a while, pero siempre se ejecuta al menos una vez.</li>
+            </ul>
+        </article>
+        <h3>FOR</h3>
+        <article>
+            <p>
+                repite hasta que una condición especificada se evalúe como false   
+            </p>
+            <div>
+                <img src="./public/teoriaBucles/bucles2.png" alt="">
+            </div>
+        </article>
+        <h3>DO WHILE</h3>
+        <article>
+            <p>
+                La instrucción do...while se repite hasta que una condición especificada se evalúe como falsa. Si  condición es true, la declaración se ejecuta de nuevo. Al final de cada ejecución, se comprueba la condición. Cuando la condición es false, la ejecución se detiene y el control pasa a la declaración que sigue a do...while.
+            </p>
+            <div>
+                <img src="./public/teoriaBucles/bucles3.png" alt="">
+            </div>
+        </article>
+        <h3>While</h3>
+        <article>
+            <p>
+                Una declaración while ejecuta sus instrucciones siempre que una condición especificada se evalúe como true. Una instrucción while tiene el siguiente aspecto:
+            </p>
+            <div>
+                <img src="./public/teoriaBucles/bucles4.png" alt="">
+            </div>
+        </article>
+    </section>
+    <section class="seccion-ejercicios">
+        <h2>Bucles</h2>
+        <article>
+            <p>
+                Son utilizados para realizar tareas repetitivas con base en una condición. Las condiciones típicamente devuelven true (verdadero) o false(falso) al ser evaluados. El bucle continuará ejecutándose hasta que la condición devuelva false. Existes varios tipos de bucles, cada uno con su prioridad y finalidad:
+            </p>
+            <img src="./public/teoriaBucles/bucles1.png" alt="">
+        </article>
+    </section>
+    
+    <section class="seccion-ejercicios">
+        <h2>Arrays</h2>
+        <article>
+            <p>
+                Un arreglo (array) en JavaScript es una estructura de datos que permite almacenar múltiples 
+                valores en una sola variable. Los arreglos en JavaScript son dinámicos, lo que significa que pueden cambiar de tamaño y almacenar diferentes tipos de datos en la misma colección.
+            </p>
+            <div>
+                <img src="./public/teoriaArrays/array1.png" alt="">
+            </div>
+        </article>
+        <article>
+            <p>
+                Acceder a un elemento de array mediante índice:
+            </p>
+            <div>
+                <img src="./public/teoriaArrays/array2.png" alt="">
+            </div>
+        </article>
+        <article>
+            <p>
+                Recorrer un array:
+            </p>
+            <div>
+                <img src="./public/teoriaArrays/array3.png" alt="">
+            </div>
+        </article>
+        <article>
+            <p>
+                Añadir un elemento al final de un array:
+            </p>
+            <div>
+                <img src="./public/teoriaArrays/array4.png" alt="">
+            </div>
+        </article>
+    </section>
+    <section class="seccion-ejercicios">
+        <h2>clases</h2>
+        <article>
+            <p>
+                Un arreglo (array) en JavaScript es una estructura de datos que permite almacenar múltiples
+                valores en una sola variable.
+                Los arreglos en JavaScript son dinámicos, lo que significa que pueden cambiar de tamaño y
+                almacenar diferentes tipos de datos en la misma colección.                
+            </p>
+            <div>
+                <img src="./public/teoriaClases/clases1.png" alt="">
+            </div>
+        </article>
+        <article>
+            <p>
+                Una expresión de clase es otra manera de definir una clase. Las expresiones de clase pueden ser nombradas o anónimas. El nombre dado a la expresión de clase nombrada es local dentro del cuerpo de esta.
+            </p>
+            <div>
+                <img src="./public/teoriaClases/clases2.png" alt="">
+            </div>
+        </article>
+    </section>
+    <section class="seccion-ejercicios">
+        <h2>Funciones</h2>
+        <article>
+            <p>
+                Un método o función con parámetros es una función que recibe valores, llamados parámetros, para realizar una tarea específica. Los parámetros permiten que una función sea reutilizable, ya que puede ejecutarse con diferentes datos según sea necesario. Cuando se llama a la función, se pasan los valores (argumentos) en el mismo orden en que fueron definidos los parámetros.
+            </p>
+            <div>
+                <img src="./public/teoriaFunciones/funciones1.png" alt="">
+            </div>
+        </article>
+        <article>
+            <p>
+                Siguiente es una función con varios parámetros:
+            </p>
+            <div>
+                <img src="./public/teoriaFunciones/funciones2.png" alt="">
+            </div>
+        </article>
+        <article>
+            <p>
+                Si una función espera un parámetro, pero no se le pasa un argumento, el valor del parámetro será undefined.
+            </p>
+            <div>
+                <img src="./public/teoriaFunciones/funciones3.png" alt="">
+            </div>
+        </article>
+        <article>
+            <p>
+                Para evitar que un parámetro sea undefined, se pueden usar valores por defecto:
+            </p>
+            <div>
+                <img src="./public/teoriaFunciones/funciones4.png" alt="">
+            </div>
+        </article>
+    </section>
+</body>
+</html>
