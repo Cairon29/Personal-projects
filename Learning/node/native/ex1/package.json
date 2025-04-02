@@ -1,0 +1,18 @@
+{
+  "name": "ex1",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:1": "node --watch ./main.js",
+    "dev:2": "node --watch ./routing.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "http": "^0.0.1-security"
+  }
+}
