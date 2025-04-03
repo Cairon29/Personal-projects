@@ -1,0 +1,6 @@
+###
+GET http://localHost:3002/home
+
+###
+
+POST http://localHost:3002/user
