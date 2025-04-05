@@ -1,0 +1,17 @@
+GET http://localhost:3456/
+
+
+###
+
+POST http://localhost:3456/movies
+Content-Type: application/json
+
+{
+    "title": "Knight fall",
+    "year": 2012,
+    "director": "Christopher Morty",
+    "duration": 152,
+    "poster": "https://i.ebayimg.com/images/g/yokAAOSw8w1YARbm/s-l1200.jpg",
+    "genre": ["Action", "Drama"],
+    "rate": 9.2
+}
