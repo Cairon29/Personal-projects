@@ -33,7 +33,7 @@ app.post('/movies', (req, res) => {
         return movieSchema.safeParse(movie)
     }
 
-    const result = validation(req.body)
+    const result = validation(req.body);
 })
 
 app.use((req, res) => {
