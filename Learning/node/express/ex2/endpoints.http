@@ -1,8 +1,7 @@
+###
 GET http://localhost:3456/
 
-
 ###
-
 POST http://localhost:3456/movies
 Content-Type: application/json
 
@@ -12,6 +11,7 @@ Content-Type: application/json
     "director": "Christopher Morty",
     "duration": 152,
     "poster": "https://i.ebayimg.com/images/g/yokAAOSw8w1YARbm/s-l1200.jpg",
-    "genre": ["Action", "Drama"],
+    "genre": ["Action"],
     "rate": 9.2
 }
+

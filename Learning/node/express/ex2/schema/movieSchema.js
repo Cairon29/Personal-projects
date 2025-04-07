@@ -23,6 +23,7 @@ const movieSchema = z.object({
     rate: z.number().min(0).max(10).default(0)
 })
 
+
 export function validateMovie (movie) {
     return movieSchema.safeParse(movie);
 }

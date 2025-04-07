@@ -8,13 +8,14 @@ const movies = JSON.parse(
         new URL('./movies.json', import.meta.url)
     )
 );
-
 const app = express();
 const port = 3456;
+
 
 // Add this line to parse JSON bodies
 app.use(express.json());
 
+// yourFavoritePage.com /movies ← this is the route
 app.use((req, res, next) => {  // Fixed parameter order
     if (req.method === 'POST' && req.url === '/movies') {
         console.log('Middleware movies');
@@ -24,16 +25,16 @@ app.use((req, res, next) => {  // Fixed parameter order
     }
 })
 
+
+//       ↓ yourFavoritePage.com/
 app.get('/', (req, res) => {
-    res.status(200).json({message: `app running on port ${port}`});
+    res.status(200).json({ message: `app running on port ${port}` });
 })
 
 app.post('/movies', (req, res) => {
     const newId = crypto.randomUUID();
 
     const result = validateMovie(req.body);
-    console.log(result)
-    console.log(result.data);
     
     if (!result.success) {  // Changed condition
         return res.status(400).json({ error: result.error });
@@ -47,6 +48,10 @@ app.post('/movies', (req, res) => {
     movies.push(newMovie);  // Changed array mutation method
 
     res.status(201).json(newMovie);
+})
+
+app.post('/products', (req, res) => {
+
 })
 
 app.use((req, res) => {  // Fixed parameter order
