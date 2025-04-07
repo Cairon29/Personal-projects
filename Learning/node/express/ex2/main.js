@@ -1,11 +1,18 @@
 import express from 'express';
 import crypto from 'crypto';
 import { validateMovie } from './schema/movieSchema.js'
+import { validateProduct } from './schema/productSchema.js';
 import { readFile } from 'fs/promises';
 
 const movies = JSON.parse(
     await readFile(
         new URL('./movies.json', import.meta.url)
+    )
+);
+
+const products = JSON.parse(
+    await readFile(
+        new URL('./products.json', import.meta.url)
     )
 );
 const app = express();
@@ -50,8 +57,25 @@ app.post('/movies', (req, res) => {
     res.status(201).json(newMovie);
 })
 
-app.post('/products', (req, res) => {
+app.get('/products', (req, res) => {
+    res.status(200).json(products);
+})
 
+app.post('/products', (req, res) => {
+    const newId = crypto.randomUUID();
+    const result = validateProduct(req.body);
+
+    if (!result.success) {
+        return res.status(400).json({ message: result.error });
+    }
+
+    const newProduct = {
+        id: newId,
+        ...result.data
+    }
+
+    products.push(newProduct);
+    res.status(201).json(newProduct);
 })
 
 app.use((req, res) => {  // Fixed parameter order
