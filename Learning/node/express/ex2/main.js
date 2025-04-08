@@ -1,7 +1,7 @@
 import express from 'express';
 import crypto from 'crypto';
 import { validateMovie } from './schema/movieSchema.js'
-import { validateProduct } from './schema/productSchema.js';
+import { validatePartialProduct, validateProduct } from './schema/productSchema.js';
 import { readFile } from 'fs/promises';
 
 const movies = JSON.parse(
@@ -89,6 +89,26 @@ app.get('/products/:id', (req, res) => {
     }
 
     res.status(200).json(product);
+})
+
+app.patch('/products/:id', (req, res) => {
+
+    const result = validatePartialProduct(req.body);
+
+    if(!result.success) {
+        return res.status(400).json({ message: result.error });
+    }
+
+    const { id } = req.params;
+    const productIndex = products.findIndex((p) => p.productId === id);
+
+    const newProduct = {
+        ...products[productIndex],
+        ...result.data
+    }
+
+    products[productIndex] = newProduct;
+    res.status(200).json({newProduct})
 })
 
 app.post('/products', (req, res) => {
