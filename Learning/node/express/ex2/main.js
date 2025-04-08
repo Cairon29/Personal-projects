@@ -38,6 +38,10 @@ app.get('/', (req, res) => {
     res.status(200).json({ message: `app running on port ${port}` });
 })
 
+app.get('/movies', (req, res) => {
+    res.status(200).json(movies);
+})
+
 app.post('/movies', (req, res) => {
     const newId = crypto.randomUUID();
 
@@ -58,7 +62,33 @@ app.post('/movies', (req, res) => {
 })
 
 app.get('/products', (req, res) => {
-    res.status(200).json(products);
+    const { tag } = req.query;
+  
+    if (tag) {
+        const filteredProducts = products.filter(product => 
+            product.tags.some(t => t.toLowerCase() === tag.toLowerCase())
+        );
+        if(filteredProducts.length === 0) {
+            return res.status(400).json({message: "Products not found"});
+        } else {
+            console.log(filteredProducts);
+            
+            return res.status(201).json(filteredProducts);
+        }
+    }
+    res.json(products);
+})
+
+
+app.get('/products/:id', (req, res) => {
+    const { id } = req.params;
+    const product = products.find((product) => product.productId === id);
+
+    if (!product) {
+        res.status(400).json({ message: "Product not found"});
+    }
+
+    res.status(200).json(product);
 })
 
 app.post('/products', (req, res) => {
@@ -70,7 +100,7 @@ app.post('/products', (req, res) => {
     }
 
     const newProduct = {
-        id: newId,
+        productId: newId,
         ...result.data
     }
 

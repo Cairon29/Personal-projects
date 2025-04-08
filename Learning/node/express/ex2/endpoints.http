@@ -15,3 +15,27 @@ Content-Type: application/json
     "rate": 9.2
 }
 
+###
+
+GET http://localhost:3456/products/ghi789
+
+###
+
+GET http://localhost:3456/products?tag=ECO
+
+###
+GET http://localhost:3456/products
+
+###
+
+POST http://localhost:3456/products
+Content-Type: application/json
+
+{
+    "name": "Re-usable bag",
+    "price": 2.99,
+    "category": "Gadgets",
+    "inStock": true,
+    "rating": 7.8,
+    "tags": ["eco", "trending"]
+}
