@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mi pagina</title>
+
+    <script type="module">
+        fetch('http://localhost:3456/products', { method: 'GET' })
+        .then(res => res.json())
+        .then(data => 
+            document.querySelector('main').innerHTML =
+            data.map(product => (
+                `
+                <article>
+                    <h2>${product.name}</h2>
+                    <p>${product.price}</p>
+                    <p>${product.rating}</p>
+                </article>
+                `
+            )).join('')
+        )
+    </script>
+</head>
+<body>
+    <main></main>
+</body>
+</html>

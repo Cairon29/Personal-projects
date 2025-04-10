@@ -61,7 +61,20 @@ app.post('/movies', (req, res) => {
     res.status(201).json(newMovie);
 })
 
+const ACCEPTED_ORIGINS = [
+    'http://localhost:8080',
+    'http://localhost:8081',
+    'http://localhost:3000'
+]
+
 app.get('/products', (req, res) => {
+
+    const origin = req.header('origin')
+
+    if (ACCEPTED_ORIGINS.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin)
+    }
+
     const { tag } = req.query;
   
     if (tag) {
@@ -110,6 +123,19 @@ app.patch('/products/:id', (req, res) => {
     products[productIndex] = newProduct;
     res.status(200).json({newProduct})
 })
+
+app.delete('/products/:id', (req, res) => {
+    const { id } = req.params;
+    const productIndex = products.findIndex((p) => p.productId === id);
+
+    if (productIndex === -1) {
+        return res.status(400).json({ message: "Product not found"});
+    }
+
+    products.splice(productIndex, 1);
+
+    res.status(204).json({ message: 'Product deleted'})
+})  
 
 app.post('/products', (req, res) => {
     const newId = crypto.randomUUID();
