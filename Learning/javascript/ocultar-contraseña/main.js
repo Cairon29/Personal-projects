@@ -9,9 +9,9 @@ iconContainer.innerHTML = sightOff;
 iconContainer.addEventListener('click', () => {
     if (input.attributes['type'].value === "password") {
         input.type = "text"
-        iconContainer.innerHTML = sightOff
+        iconContainer.innerHTML = sightOn
     } else {
         input.type = "password"
-        iconContainer.innerHTML = sightOn
+        iconContainer.innerHTML = sightOff
     }
 })
