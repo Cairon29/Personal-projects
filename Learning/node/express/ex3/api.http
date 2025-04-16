@@ -1,1 +1,5 @@
-GET http://localhost:3001
+GET http://localhost:7890
+
+### Get list of bikes with a common brand
+
+GET http://localhost:7890/bikes/BMW

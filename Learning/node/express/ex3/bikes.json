@@ -1,0 +1,52 @@
+[
+  {
+    "id": "9a1b2c3d-4e5f-6789-abcd-1234567890ab",
+    "brand": "BMW",
+    "model": "S1000 RR",
+    "year": 2014,
+    "topSpeed": 299,
+    "engine": 999,
+    "dryWeight": 183,
+    "wetWeight": 207
+  },
+  {
+    "id": "0f1e2d3c-4b5a-6978-cdef-2345678901bc",
+    "brand": "Yamaha",
+    "model": "YZF-R1",
+    "year": 2020,
+    "topSpeed": 298,
+    "engine": 998,
+    "dryWeight": 177,
+    "wetWeight": 200
+  },
+  {
+    "id": "1a2b3c4d-5e6f-7089-abcd-3456789012cd",
+    "brand": "Ducati",
+    "model": "Panigale V4",
+    "year": 2022,
+    "topSpeed": 305,
+    "engine": 1103,
+    "dryWeight": 175,
+    "wetWeight": 198
+  },
+  {
+    "id": "2b3c4d5e-6f70-8190-bcda-4567890123de",
+    "brand": "Kawasaki",
+    "model": "Ninja ZX-10R",
+    "year": 2018,
+    "topSpeed": 299,
+    "engine": 998,
+    "dryWeight": 174,
+    "wetWeight": 206
+  },
+  {
+    "id": "3c4d5e6f-7081-9201-cdab-5678901234ef",
+    "brand": "Suzuki",
+    "model": "GSX-R1000",
+    "year": 2019,
+    "topSpeed": 300,
+    "engine": 999,
+    "dryWeight": 172,
+    "wetWeight": 202
+  }
+]

@@ -3,21 +3,25 @@ import crypto from 'crypto';
 import { validateMovie } from './schema/movieSchema.js'
 import { validatePartialProduct, validateProduct } from './schema/productSchema.js';
 import { readFile } from 'fs/promises';
+// ↓ this is the new way to import a json file
+import movies from './movies.json' with { type: 'json'}
 
-const movies = JSON.parse(
-    await readFile(
-        new URL('./movies.json', import.meta.url)
-    )
-);
+// ↓ this is an old way to import a json file
+// const products = JSON.parse(
+//     await readFile(
+//         new URL('./products.json', import.meta.url)
+//     )
+// );
 
-const products = JSON.parse(
-    await readFile(
-        new URL('./products.json', import.meta.url)
-    )
-);
 const app = express();
-const port = 3456;
+// ↓ this is an acceptable way to import json files
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url)
+const products = require('./products.json')
 
+
+
+const port = process.env.PORT ?? 3456 ;
 
 // Add this line to parse JSON bodies
 app.use(express.json());
