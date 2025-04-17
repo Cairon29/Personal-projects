@@ -15,5 +15,5 @@ export const bikeValidate = (object) => {
 }
 
 export const bikePartialValidate = (object) => {
-    return bikeSchema.partial.safeParse(object)
+    return bikeSchema.partial().safeParse(object)
 }

@@ -3,3 +3,34 @@ GET http://localhost:7890
 ### Get list of bikes with a common brand
 
 GET http://localhost:7890/bikes/BMW
+
+### Get a bike by query ID
+
+GET http://localhost:7890/bikes?id=9a1b2c3d-4e5f-6789-abcd-1234567890ab
+
+### POST a new bike
+
+POST http://localhost:7890/bikes
+Content-Type: application/json
+
+{
+    "brand": "Honda",
+    "model": "CBR1000RR-R Fireblade SP",
+    "year": 2021,
+    "topSpeed": 299,
+    "engine": 999,
+    "dryWeight": 180,
+    "wetWeight": 201
+}
+
+### PATCH a bike
+PATCH http://localhost:7890/bikes/?id=3c4d5e6f-7081-9201-cdab-5678901234ef
+Content-Type: application/json
+
+{
+    "year": 2017,
+    "topSpeed": 300
+}
+
+### DELETE a bike
+DELETE http://localhost:7890/bikes/?id=ccc57cb8-1a80-4879-8702-39d5d097149b
