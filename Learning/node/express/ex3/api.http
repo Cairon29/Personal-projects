@@ -1,8 +1,8 @@
-GET http://localhost:7890
+GET http://localhost:7890/bikes
 
 ### Get list of bikes with a common brand
 
-GET http://localhost:7890/bikes/BMW
+GET http://localhost:7890/bikes/kawasaki
 
 ### Get a bike by query ID
 
@@ -33,4 +33,4 @@ Content-Type: application/json
 }
 
 ### DELETE a bike
-DELETE http://localhost:7890/bikes/?id=ccc57cb8-1a80-4879-8702-39d5d097149b
+DELETE http://localhost:7890/bikes/?id=67155227-7fc9-4702-8783-0b99c8709ffe

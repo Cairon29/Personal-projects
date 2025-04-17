@@ -1,8 +1,7 @@
 import express from 'express'
-import bikes from './bikes.json' with { type : "json"}
-import crypto from 'crypto';
-import { bikePartialValidate, bikeValidate } from './schemas/bike-schema.js';
 import cors from 'cors';
+
+import { BikeRouter } from './routes/bikes.js';
 
 /*___________________________________________________ */
 
@@ -33,86 +32,7 @@ app.use(cors({
 }))
 app.disable('x-powered-by')
 
-/*___________________________________________________ */
-
-app.get('/', (req, res) => {
-    res.status(200).json(bikes)
-})
-
-app.get('/bikes/:brand', (req, res) => {
-    const { brand } = req.params;
-    const brandBikes = bikes.filter((bike) => bike.brand.toLocaleLowerCase() === brand.toLocaleLowerCase())
-    
-    if (brandBikes.length > 0 ) {
-        return res.status(200).send(brandBikes)
-    }
-
-    res.status(404).send({ message: `There are no bikes with the ${brand} brand`})
-})
-
-app.get('/bikes', (req, res) => {
-    const { id } =  req.query;
-    const bike = bikes.find(b => b.id === id)
-
-    if (bike) {
-        return res.status(200).send(bike)
-    }
-
-    res.status(404).json({ message: 'No bike found' })
-})
-
-app.post('/bikes', (req, res) => {
-    const newId = crypto.randomUUID()
-    const result = bikeValidate(req.body)
-
-    if (!result.success) {
-        return res.status(404).json({ message: 'No bike created'})
-    }
-
-    const newBike = {
-        id: newId,
-        ...result.data
-    };
-
-    bikes.push(newBike)
-    res.status(201).json(newBike);
-})
-
-app.patch('/bikes', (req, res) => {
-    const { id } = req.query;
-    const bikeIndex = bikes.findIndex((b) => b.id === id)
-
-    if (bikeIndex === -1) {
-        return res.status(200).json({ message: 'Bike not found'})
-    }
-
-    const result = bikePartialValidate(req.body);
-
-    if (!result.success) {
-        return res.status(400).json({ message: 'Format data incorrect' })
-    }
-
-    const modifiedBike = {
-        ...bikes[bikeIndex],
-        ...result.data
-    }
-
-    bikes[bikeIndex] = modifiedBike
-    return res.status(200).json({modifiedBike})
-})
-
-app.delete('/bikes', (req, res) => {
-    const { id } = req.query;
-
-    const bikeIndex = bikes.findIndex(b => b.id === id);
-
-    if (bikeIndex === -1) {
-        return res.status(404).json({ message: 'Bike not found'})
-    }
-
-    bikes.splice(bikeIndex, 1);
-    return res.sendStatus(204);
-})
+app.use('/bikes', BikeRouter)
 
 /*___________________________________________________ */
 
