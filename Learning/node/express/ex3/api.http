@@ -33,4 +33,4 @@ Content-Type: application/json
 }
 
 ### DELETE a bike
-DELETE http://localhost:7890/bikes/?id=67155227-7fc9-4702-8783-0b99c8709ffe
+DELETE http://localhost:7890/bikes/?id=855c205e-c9f2-448b-92e2-17b4b3a2dd5d

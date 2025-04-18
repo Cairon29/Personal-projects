@@ -1,73 +1,36 @@
 import bikes from '../bikes.json' with { type: 'json'}
 import { Router } from "express";
 import { bikePartialValidate, bikeValidate } from '../schemas/bike-schema.js';
-import crypto from 'crypto'
+import { BikeModel } from '../models/bike.js';
 
 export const BikeRouter = Router()
 
-// BikeRouter.get('/', (req, res) => {
-//     res.status(200).json(bikes)
-// })
-
-// BikeRouter.get('/', (req, res) => {
-//     const { id } =  req.query;
-//     const bike = bikes.find(b => b.id === id)
-
-//     if (bike) {
-//         return res.status(200).json(bike)
-//     }
-
-//     res.status(404).json({ message: 'No bike found' })
-// })
-
-
-BikeRouter.get('/', (req, res) => {
+BikeRouter.get('/', async (req, res) => {
     const { id } = req.query;
-    
-    if (id) {
-        const bike = bikes.find(b => b.id === id);
-        if (bike) {
-            return res.status(200).json(bike);
-        }
-    } else {
-        try {
-            return res.status(200).json(bikes);
-        } catch {
-            return res.status(404).json({ message: 'No bike found' });
-        }
-    }
-    
+
+    const bikesResponse = await BikeModel.getAll({ id })
+    res.status(bikesResponse.status).send(bikesResponse.value)
 })
 
-BikeRouter.get('/:brand', (req, res) => {
+BikeRouter.get('/:brand', async (req, res) => {
     const { brand } = req.params;
-    const brandBikes = bikes.filter((bike) => bike.brand.toLocaleLowerCase() === brand.toLocaleLowerCase())
-    
-    if (brandBikes.length > 0 ) {
-        return res.status(200).send(brandBikes)
-    }
 
-    res.status(404).send({ message: `There are no bikes with the ${brand} brand`})
+    const {status, value} = await BikeModel.getBrand({ brand })
+    return res.status(status).send(value)
 })
 
-BikeRouter.post('/', (req, res) => {
-    const newId = crypto.randomUUID()
+BikeRouter.post('/', async (req, res) => {
     const result = bikeValidate(req.body)
-
+    
     if (!result.success) {
         return res.status(404).json({ message: 'No bike created'})
     }
-
-    const newBike = {
-        id: newId,
-        ...result.data
-    };
-
-    bikes.push(newBike)
-    res.status(201).json(newBike);
+    const { data } = result
+    const createResponse = await BikeModel.create({ data })
+    res.status(createResponse.status).json(createResponse.value);
 })
 
-BikeRouter.patch('/', (req, res) => {
+BikeRouter.patch('/', async (req, res) => {
     const { id } = req.query;
     const bikeIndex = bikes.findIndex((b) => b.id === id)
 
@@ -81,24 +44,15 @@ BikeRouter.patch('/', (req, res) => {
         return res.status(400).json({ message: 'Format data incorrect' })
     }
 
-    const modifiedBike = {
-        ...bikes[bikeIndex],
-        ...result.data
-    }
+    const { data } = result;
+    const modifiedResponse = await BikeModel.modifyBike({ data, bikeIndex })
 
-    bikes[bikeIndex] = modifiedBike
-    return res.status(200).json({modifiedBike})
+    return res.status(200).json({modifiedResponse})
 })
 
-BikeRouter.delete('/', (req, res) => {
+BikeRouter.delete('/', async (req, res) => {
     const { id } = req.query;
-
-    const bikeIndex = bikes.findIndex(b => b.id === id);
-
-    if (bikeIndex === -1) {
-        return res.status(404).json({ message: 'Bike not found'})
-    }
-
-    bikes.splice(bikeIndex, 1);
-    return res.sendStatus(204);
+    const { status, value} = await BikeModel.delete({ id })
+    // const { status, value} = response
+    return res.status(status).send(value);
 })

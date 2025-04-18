@@ -1,9 +1,6 @@
 import express from 'express'
 import cors from 'cors';
-
 import { BikeRouter } from './routes/bikes.js';
-
-/*___________________________________________________ */
 
 const app = express()
 app.use(express.json())
@@ -11,9 +8,9 @@ app.use(cors({
     origin: (origin, callback) => {
         const ACCEPTED_ORIGINS = [
             'http://localhost:8080',
-            'http://localhost:1234'
+            'http://localhost:1234',
+            'http://localhost:7890'
         ];
-
             // ↓ this is a way of validating if the origin is in the allowed list
         if (ACCEPTED_ORIGINS.indexOf(origin) !== -1) {
             return callback(null, true)
@@ -34,10 +31,8 @@ app.disable('x-powered-by')
 
 app.use('/bikes', BikeRouter)
 
-/*___________________________________________________ */
-
 app.use((req, res) => {
-    res.status(200).send({ message: "Route not found"})
+    res.status(404).send({ message: "Route not found"})
 })
 
 const PORT = process.env.PORT || 7890;
