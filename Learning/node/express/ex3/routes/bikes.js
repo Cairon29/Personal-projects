@@ -2,15 +2,11 @@ import bikes from '../bikes.json' with { type: 'json'}
 import { Router } from "express";
 import { bikePartialValidate, bikeValidate } from '../schemas/bike-schema.js';
 import { BikeModel } from '../models/bike.js';
+import { BikeController } from '../controller/bike.js';
 
 export const BikeRouter = Router()
 
-BikeRouter.get('/', async (req, res) => {
-    const { id } = req.query;
-
-    const bikesResponse = await BikeModel.getAll({ id })
-    res.status(bikesResponse.status).send(bikesResponse.value)
-})
+BikeRouter.get('/', BikeController.getAll)
 
 BikeRouter.get('/:brand', async (req, res) => {
     const { brand } = req.params;
