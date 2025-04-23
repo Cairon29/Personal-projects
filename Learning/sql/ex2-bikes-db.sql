@@ -39,8 +39,6 @@ SELECT DISTINCT brand, modeL, dryWeight, topSpeed FROM bikes;
 SELECT brand, model, dryWeight FROM bikes WHERE brand LIKE '%aha';
 SELECT * FROM bikes WHERE brand LIKE 'KT_';
 SELECT * FROM bikes LIMIT 3;
-SELECT MIN(dryweight) FROM bikes;
-SELECT MAX(dryweight) FROM bikes;
 SELECT * FROM bikes WHERE brand = 'ducati' OR brand = 'yamaha';
 SELECT * FROM bikes WHERE NOT brand = 'ducati' AND NOT brand = 'yamaha';
 
@@ -65,9 +63,50 @@ SELECT * FROM bikes WHERE brand LIKE 'KT_';
 SELECT * FROM bikes LIMIT 3;
 
 -- MIN and MAX
-SELECT MIN(dryweight) FROM bikes;
-SELECT MAX(dryweight) FROM bikes;
+SELECT MIN(dryweight) FROM bikes; -- ← Returns a single value
+SELECT MAX(dryweight) FROM bikes; -- ← Returns a single value
 
 -- OR, AND, NOT
 SELECT * FROM bikes WHERE brand = 'ducati' OR brand = 'yamaha';
 SELECT * FROM bikes WHERE NOT brand = 'ducati' AND NOT brand = 'yamaha';
+
+-- COUNT, SUM, AVG
+SELECT COUNT(brand) FROM bikes;
+SELECT SUM(engineSize) FROM bikes;
+SELECT AVG(engineSize) FROM bikes;
+
+-- IN 
+SELECT * FROM bikes WHERE brand IN('KAWASAKI', 'DUCATI', 'HONDA'); -- ← not case sensitive
+
+-- ALIAS
+SELECT brand, year AS 'release year', topSpeed FROM bikes; -- ← is like a callback in which you rename your current variable
+
+-- ALIAS + CONCAT
+/* ↓ In this line it would literaly put 'CONCAT(brand, ' ', year)' as a table name since we didn't asign any name to it */
+SELECT CONCAT(brand, ' ', year), CONCAT(wetWeight, ' ', 'KG') FROM BIKES;
+
+/* ↓ In this way we fix that error by naming our statement*/
+SELECT CONCAT(brand, ' ', year) AS 'Model', CONCAT(wetWeight, ' ', 'KG') AS 'Full weight' FROM BIKES;
+
+-- CASE ← works as an IF operator in any other language. 
+-- ↓↓↓ this is going to generate a table
+SELECT *,
+CASE
+	WHEN year < 2010 THEN 'old'
+    WHEN year < 2020 THEN 'not new'
+	ELSE 'NEW'
+END AS 'Is new?' -- ← We use the alias to avoid SQL put the statement as a table title
+
+FROM bikes;
+
+SELECT *,
+CASE 
+	WHEN brand LIKE 'A%' THEN 'Starts with letter "A"'
+	WHEN brand LIKE 'H%' OR brand LIKE 'D%' OR brand LIKE 'K%' THEN 'Is a cool bike'
+    ELSE CONCAT('Some random bike:', ' ', brand)
+END AS coolmeter
+FROM bikes;
+
+-- UPDATE
+UPDATE bikes SET year = 2019 WHERE id = 14; -- ← does not return anything
+UPDATE bikes SET year = 2018 WHERE id = 14;
