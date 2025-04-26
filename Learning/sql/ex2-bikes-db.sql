@@ -110,3 +110,24 @@ FROM bikes;
 -- UPDATE
 UPDATE bikes SET year = 2019 WHERE id = 14; -- ← does not return anything
 UPDATE bikes SET year = 2018 WHERE id = 14;
+
+
+
+-- ALTER TABLE
+ALTER TABLE bikes
+ADD plate int NOT NULL;
+ALTER TABLE bikes DROP COLUMN plate;
+
+ALTER TABLE bikes
+DROP COLUMN plate_id;
+
+ALTER TABLE bikes
+RENAME COLUMN plate TO plate_id;
+
+ALTER TABLE bikes ADD plate_id int not null;
+
+ALTER TABLE bikes
+ADD CONSTRAINT fk_plates
+FOREIGN KEY (plate_id) REFERENCES plates(id);
+
+SELECT * FROM BIKES limit 5;
