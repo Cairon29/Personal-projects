@@ -1,0 +1,21 @@
+{
+  "name": "ex4-db-conection",
+  "version": "1.0.0",
+  "description": "conecting a MySQL db to a NodeJS enviroment",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node main.js"
+  },
+  "keywords": [
+    "mysql",
+    "nodejs",
+    "conn"
+  ],
+  "author": "David Jitomate",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^3.14.1"
+  }
+}
