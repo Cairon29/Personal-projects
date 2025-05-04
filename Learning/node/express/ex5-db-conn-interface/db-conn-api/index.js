@@ -31,6 +31,23 @@ const conn = await mysql.createConnection({
 
 // http://localhost:3000/api/users
 
+app.post('/api/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        await conn.beginTransaction();
+        const [result] = await conn.execute(
+            'SELECT * from users WHERE email = ? AND password = ? ;',
+            [email, password]
+        )
+        await conn.commit()
+        res.status(200).json(result)
+    } catch(e) {
+        await conn.rollback()
+        res.status(500).json({ error: err.message })
+    }   
+})
+
 app.post('/api/users', async (req, res) => {
     try {
         const { name, surname, email, password } = req.body;
