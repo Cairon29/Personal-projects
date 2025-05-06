@@ -22,6 +22,8 @@ app.use(cors({
     }
 }))
 
+// DB Connection
+
 const conn = await mysql.createConnection({
     host: 'localhost',
     port: 3309,
@@ -48,17 +50,23 @@ app.post('/api/login', async (req, res) => {
     }   
 })
 
-app.get('/api/users', async (req ,res) => {
-    await conn.beginTransaction()
-    const [result] = await conn.execute(
-        'SELECT id, name, surname, email FROM users;',
-    )
-    if (result) {
+app.get('/api/users', async (req, res) => {
+    try {
+        await conn.beginTransaction()
+        const [result] = await conn.execute(
+            'SELECT user_id, name, surname, email FROM users;'
+        )
         await conn.commit()
+        
+        if (result.length === 0) {
+            return res.status(404).json({ message: 'No users found' })
+        }
+        
         return res.status(200).json(result)
+    } catch (error) {
+        await conn.rollback()
+        return res.status(500).json({ message: 'Internal server error', error: error.message })
     }
-
-    return res.status(404).json({ message: 'Something went wrong' })
 })
 
 app.post('/api/users', async (req, res) => {
@@ -75,6 +83,27 @@ app.post('/api/users', async (req, res) => {
     } catch (err) {
         await conn.rollback()
         res.status(500).json({ error: err.message })
+    }
+})
+
+// get all plushies
+
+app.get('/api/plushies', async (req, res) => {
+    try {
+        await conn.beginTransaction()
+        const [result] = await conn.execute(
+            'SELECT plush_id, name, cost, stock FROM plushies;'
+        )
+        await conn.commit()
+        
+        if (result.length === 0) {
+            return res.status(404).json({ message: 'No plushies found' })
+        }
+        
+        return res.status(200).json(result)
+    } catch (error) {
+        await conn.rollback()
+        return res.status(500).json({ message: 'Internal server error', error: error.message })
     }
 })
 
