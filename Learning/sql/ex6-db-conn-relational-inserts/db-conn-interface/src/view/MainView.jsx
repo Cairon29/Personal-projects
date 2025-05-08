@@ -47,6 +47,8 @@ export const MainView = () => {
                 <Link to='/register-plushies'>Register plushies</Link>
                 <br />
                 <Link to='/login'>Login</Link>
+                <br />
+                <Link to='/modify-plush'>Modify plush</Link>
             </nav>
         </>
     )

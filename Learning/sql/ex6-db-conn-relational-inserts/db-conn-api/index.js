@@ -145,6 +145,58 @@ app.patch('/api/plushies', async (req, res) => {
     res.status(201).json(result)
 })
 
+app.patch('/api/plushies/:id', async (req, res) => {
+    const { id } = req.params;
+
+    if (!id) {
+        return res.status(402).json({ message: 'No id sent on the request param'})
+    }
+
+    let fields = []
+    let values = []
+    const { name, cost, stock } = req.body;
+
+    if(name !== undefined) {
+        fields.push('name = ?')
+        values.push(name)
+    }
+
+    if(cost !== undefined) {
+        fields.push('cost = ?')
+        values.push(cost)
+    }
+    if(stock !== undefined) {
+        fields.push('stock = ?')
+        values.push(stock)
+    }
+
+    values.push(id); 
+
+    // try {
+    //     await conn.beginTransaction()
+    //     const [result] = await conn.execute(
+    //         `UPDATE plushies SET ${fields.join(', ')} WHERE plush_id = ?`,
+    //         [id]
+    //     )
+    //     await conn.commit();
+    //     res.status(200).send(result)
+    // } catch (err) {
+    //     res.status(400).json({ message: 'error updating the plushie', error: err})
+    // }
+
+    try {
+        await conn.beginTransaction();
+        const query = `UPDATE plushies SET ${fields.join(', ')} WHERE plush_id = ?`;
+        const [result] = await conn.execute(query, values);
+        await conn.commit();
+        res.status(200).json({ message: 'Plushie updated', result });
+    } catch (err) {
+        await conn.rollback();
+        res.status(500).json({ message: 'Error updating plushie', error: err.message });
+    }
+
+})
+
 app.listen(3000, () => {
     console.log('running on port 3000')
 })

@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/api/plushies/1
+Content-Type: application/json
+
+{
+    "name": "Pink Stitch",
+    "cost": 20000
+}
