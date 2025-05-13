@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import mysql from 'mysql2/promise';
 
+import { notesValidate, notesPartialValidate } from "./schemas/notes_schema.js";
+import { usersValidate, usersPartialValidate } from "./schemas/users_schema.js";
+
 const app = express();
 app.use(express.json())
 app.disable('x-powered-by')
@@ -32,41 +35,138 @@ const conn = await mysql.createConnection({
     database: 'notes'
 })
 
-app.get('/notes', async (req, res) => {
+app.get('/users', async (req, res) => {
     await conn.beginTransaction();
     const [result] = await conn.execute(
-        'SELECT user_id, name, nick_name, email FROM notes'
+        'SELECT user_id, name, nick_name, email FROM users'
     )
     if (!result) {
         await conn.rollback();
-        return res.status(404).json({ message: 'Not found' })
+        return res.status(404).json({ message: 'No users found' })
     }
 
     await conn.commit();
     res.json(result)
 })
 
+app.get('/users/:id', async (req, res) => {
+    const { id } = req.params
+    const [result] = await conn.execute(
+        'SELECT user_id, name, nick_name, email FROM users WHERE user_id = ?',
+        [id]
+    )
+    if (!result) {
+        await conn.rollback();
+        return res.status(404).json({ message: 'No users found' })
+    }
+
+    await conn.commit();
+    res.status(200).json(result)
+})
+
+app.get('/notes', async (req, res) => {
+    await conn.beginTransaction();
+    const [result] = await conn.execute(
+        'SELECT note_id, title, description, date, fk_user_id FROM notes'
+    )
+    if (!result) {
+        await conn.rollback();
+        return res.status(404).json({ message: 'No notes found' })
+    }
+
+    await conn.commit();
+    res.json(result)
+})
+
+app.get('/notes/:id', async (req, res) => {
+    const { id } = req.params
+    const [result] = await conn.execute(
+        'SELECT note_id, title, description, date, fk_user_id FROM notes WHERE note_id = ?',
+        [id]
+    )
+    if  (!result) {
+        await conn.rollback();
+        return res.status(404).json({ message: 'No notes found' })
+    }
+
+    await conn.commit();
+    res.status(200).json(result)
+})
+
+
+
+/*___________________________________________________________________________ */
+
+
 app.post('/notes', async (req, res) => {
     const result = notesValidate(req.body)
     if (!result.success) {
-        return res.status(404).json({ message: 'No note created' })
+        return res.status(404).json({ message: 'Incorrect data entered' })
     }
 
     const { data } = result
     const [result2] = await conn.execute(
-        'INSERT INTO notes (user_id, name, nick_name, email) VALUES (?, ?, ?, ?)',
-        [ data.name, data.nick_name, data.email]
+        'INSERT INTO notes (title, description fk_user_id) VALUES (?, ?, ?)',
+        [ data.title, , data.description, data.fk_user_id ]
     )
 
     if (!result2) {
         await conn.rollback();
-        return res.status(404).json({ message: 'No note created' })
+        return res.status(404).json({ message: 'Error creating the user' })
     }
 
     await conn.commit();
     res.status(202).json({ message: 'Note created' })
 })
 
+app.post('/users', async (req, res) => {
+    const result = usersValidate(req.body)
+    if (!result.success) {
+        return res.status(404).json({ message: 'Incorrect data entered' })
+    }
+
+    const  { data } = result
+    const [result2] = await conn.execute(
+        'INSERT INTO users (name, nick_name, email, password) VALUES (?,?,?,?)',
+        [ data.name, data.nickName, data.email, data.password ]
+    )
+
+    if (!result2) {
+        await conn.rollback();
+        return res.status(404).json({ message: 'Error creating the user' })
+    }
+
+    await conn.commit();
+    res.status(202).json({ message: 'User created' })
+})
+
+/*___________________________________________________________________________ */
+
+app.patch('/notes/:id', async (req, res) => {
+    const  { id } = req.params
+    if (!id) {
+        return res.status(404).json({ message: 'No note id entered' })
+    }
+
+    const result = notesPartialValidate(req.body)
+
+    if (!result.success) {
+        return res.status(404).json({ message: 'Incorrect data entered' })
+    }
+
+    const { data } = result
+    const keys = Object.keys(data)
+    const values = Object.values(data)
+    const query = `UPDATE notes SET ${keys.map((key) => (`${key} = ?`)).join(', ')} WHERE note_id = ?`
+    const [result2] = await conn.execute(query, [...values, id])
+
+    if (!result2) {
+        await conn.rollback();
+        return res.status(404).jsob({ message: 'Error updating the note'})
+    }
+    await conn.commit();
+    res.status(200).json({ message: 'Note updated', result });
+})
 
 app.use((req, res) => {
     res.status(404).json({ message: 'Not found' })

@@ -127,24 +127,6 @@ app.post('/api/plushies', async (req, res) => {
     }
 })
 
-app.patch('/api/plushies', async (req, res) => {
-    const data = req.body;
-    const { id } = req.body;
-
-    if(!data) {
-        return res.status(400).json({ message: 'There is no info on the request'});
-    }
-
-    await conn.beginTransaction();
-    const [result] = await conn.execute(
-        'UPDATE plushies SET name = ? where plush_id = ?'
-        [data, id]
-    )
-
-    await conn.commit()
-    res.status(201).json(result)
-})
-
 app.patch('/api/plushies/:id', async (req, res) => {
     const { id } = req.params;
 
