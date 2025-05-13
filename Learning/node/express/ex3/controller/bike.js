@@ -1,6 +1,6 @@
 import bikes from '../bikes.json' with { type: 'json' }
 import { BikeModel } from '../models/bike.js';
-import {bikeValidate} from "../schemas/bike-schema.js";
+import { bikeValidate } from "../schemas/bike-schema.js";
 
 export class BikeController {
     static async getAll (req, res) {
