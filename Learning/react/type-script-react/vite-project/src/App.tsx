@@ -8,6 +8,8 @@ interface Props {
   person2: Person2;
 }
 //                   ↓ this are the props that are using the interface
+
+// const App = ({working, person, person2}: Props): React.ReactNode => {
 const App: React.FC<Props> = ({ working, /* noProp */ person, person2 }) => {
   //                                           ↑
   // this prop passed to the component does not work because it is not defined in the interface
