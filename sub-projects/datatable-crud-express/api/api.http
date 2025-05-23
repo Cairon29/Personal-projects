@@ -1,0 +1,13 @@
+GET http://localhost:5556/api/users
+
+### POST
+POST http://localhost:5556/api/users
+Content-Type: application/json
+
+{
+    "nombres": "Diyinger Acero",
+    "apellidos": "Zalgado Guerra",
+    "email": "loom@gmail.com",
+    "password": "12345678",
+    "rol": 2
+}
