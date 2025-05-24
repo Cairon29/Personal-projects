@@ -8,7 +8,8 @@ CREATE TABLE productos (
     precio DECIMAL(10,2) NOT NULL,
     stock INT NOT NULL,
     id_categoria INT NOT NULL,
-    id_marca INT NOT NULL
+    id_marca INT NOT NULL,
+    imagen VARCHAR(100)
 );
 
 CREATE TABLE categorias (
@@ -40,6 +41,11 @@ CREATE TABLE marcas_categorias (
     FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
 );
 
+CREATE TABLE roles (
+    id_rol INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    rol VARCHAR(100) NOT NULL
+)
+
 CREATE TABLE usuarios (
     id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -48,7 +54,10 @@ CREATE TABLE usuarios (
     direccion VARCHAR(100) NOT NULL,
     telefono INT NOT NULL,
     password VARCHAR(100) NOT NULL,
-    admin BOOLEAN not NULL,
+    id_rol int,
+
+    FOREIGN KEY (id_rol) REFERENCES roles(id_rol),
+ 
     UNIQUE(email)
 );
 
