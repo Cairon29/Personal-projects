@@ -1,8 +1,5 @@
 import express from 'express'
 import cors from 'cors'
-import conn from './config/connection.js'
-
-import { userValidate, userPartialValidate } from './schema/users.js'
 import { UserRouter } from './routes/users.js'
 
 const PORT = 5556
