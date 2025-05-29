@@ -15,6 +15,11 @@ export class ProductsController {
         if(!result.success){
             return res.status(400).json({ message: result.error })
         }
+
+        const { data } = result
+
+        const productResponse = await ProductsModel.create({ data })
+        res.status(productResponse.status).send(productResponse.value)
     }
 
     static async modify(req, res){

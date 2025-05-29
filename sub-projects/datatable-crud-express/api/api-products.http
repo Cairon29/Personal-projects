@@ -1,0 +1,37 @@
+GET http://localhost:5556/api/products
+
+###
+
+DELETE http://localhost:5556/api/users/11
+
+###
+
+
+PATCH  http://localhost:5556/api/users?id=11
+Content-Type: application/json
+
+{
+    "apellidos": "Cortez"
+}
+
+#####################################################
+
+### REGISTER PRODUCT
+POST http://localhost:5556/api/products
+Content-Type: application/json
+
+{
+    "nombre": "Botella",
+    "descripcion": "Botella interesante llena de agua y amor de mama",
+    "precio": 1000,
+    "cantidad": 123231
+}
+
+#### LOGIN
+POST http://localhost:5556/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "mamasota@gmail.com",
+    "password": "12345678"
+}
