@@ -36,7 +36,7 @@ export class AuthModel {
             await conn.beginTransaction()
             const [result] = await conn.execute(
                 'INSERT INTO usuarios (nombres, apellidos, email, password, rol) VALUES (?, ?, ?, ?, ?)',
-                [data.nombres, data.apellidos, data.email, data.password, data.rol]
+                [...Object.values(data)] 
             )
             await conn.commit()
             return response = { ...response, status: 200, value: result }
