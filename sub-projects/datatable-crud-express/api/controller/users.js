@@ -1,25 +1,11 @@
 import { UserModel } from "../model/users.js"
-import { userValidate, userPartialValidate } from "../schema/users.js"
+import { userPartialValidate } from "../schema/users.js"
 
 export class UserController {
     static async getAll(req, res) {
         const { id } = req.query;
 
         const userResponse = await UserModel.getAll({ id })
-        res.status(userResponse.status).send(userResponse.value)
-    }
-
-    static async create(req, res) {
-        
-        const result =  userValidate(req.body)
-
-        if(!result.success) {
-            return res.status(400).json({ value: result.error })
-        }
-
-        const { data } =  result
-
-        const userResponse = await UserModel.create({ data })
         res.status(userResponse.status).send(userResponse.value)
     }
 

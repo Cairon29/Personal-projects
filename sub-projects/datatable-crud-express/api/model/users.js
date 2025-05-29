@@ -16,10 +16,6 @@ export class UserModel {
                     "SELECT * FROM usuarios WHERE id_usuario = ?;",
                     [id]
                 )
-
-                // if (result.length === 0) {
-                //     return response = { ...response, status: 404, value: 'No students found' }
-                // }
                 return response = { ...response, status: 200, value: result }
             } catch (error) {
                 await conn.rollback()
@@ -42,28 +38,6 @@ export class UserModel {
                 await conn.rollback()
                 return response = { ...response, status: 404, value: error }
             }
-        }
-    }
-
-    static async create ({ data }) {
-
-        let response = { 
-            status: 400,
-            value: { message: 'No user deleted' }
-        }
-
-        try{
-            await conn.beginTransaction()
-            const [result] = await conn.execute(
-                'INSERT INTO usuarios (nombres, apellidos, email, password, rol) VALUES (?, ?, ?, ?, ?)',
-                [data.nombres, data.apellidos, data.email, data.password, data.rol]
-            )
-            await conn.commit()
-            return response = { ...response, status: 200, value: result }
-
-        } catch (err) {
-            await conn.rollback()
-            return response = { ...response, status: 500, value: err.message }
         }
     }
 

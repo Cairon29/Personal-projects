@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { UserRouter } from './routes/users.js'
+import { AuthRouter } from './routes/auth.js'
 
 const PORT = 5556
 const app = express()
@@ -25,6 +26,7 @@ app.use(cors({
     }
 }))
 
+app.use('/api/auth', AuthRouter)
 app.use('/api/users', UserRouter)
 
 app.listen(PORT, () => {

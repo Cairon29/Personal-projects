@@ -1,17 +1,4 @@
-GET http://localhost:5556/api/users?id=11
-
-### POST
-POST http://localhost:5556/api/users
-Content-Type: application/json
-
-{
-    "nombres": "Ana Maria",
-    "apellidos": "Navarro",
-    "email": "mamasota@gmail.com",
-    "password": "12345678",
-    "rol": 1
-}
-
+GET http://localhost:5556/api/users
 
 ###
 
@@ -25,4 +12,27 @@ Content-Type: application/json
 
 {
     "apellidos": "Cortez"
+}
+
+#####################################################
+
+### REGISTER
+POST http://localhost:5556/api/auth/register
+Content-Type: application/json
+
+{
+    "nombres": "Ana Maria",
+    "apellidos": "Navarro",
+    "email": "mamasota@gmail.com",
+    "password": "12345678",
+    "rol": 1
+}
+
+#### LOGIN
+POST http://localhost:5556/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "mamasota@gmail.com",
+    "password": "12345678"
 }
