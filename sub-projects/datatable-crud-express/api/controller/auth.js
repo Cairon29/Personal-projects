@@ -26,7 +26,7 @@ export class AuthController {
 
         const { data } =  result
 
-        const userResponse = await UserModel.register({ data })
+        const userResponse = await AuthModel.register({ data })
         res.status(userResponse.status).send(userResponse.value)
     }
 }

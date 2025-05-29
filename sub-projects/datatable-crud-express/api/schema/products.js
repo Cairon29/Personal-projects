@@ -1,17 +1,16 @@
-// import z from 'zod'
+import z from 'zod'
 
-// const userSchema = z.object({
-//     nombres: z.string().required(),
-//     apellidos: z.string().required(),
-//     email: z.string().email().required(),
-//     password: z.string().min(6).required(),
-//     rol: z.string().required()
-// })
+const productSchema = z.object({
+    nombre: z.string().min(1),
+    descripcion: z.string().min(1),
+    precio: z.number().min(1),
+    cantidad: z.number().min(1)
+})
 
-// export const userValidate = (object) => {
-//     return userSchema.safeParse(object)
-// }
+export const productValidate = (object) => {
+    return productSchema.safeParse(object)
+}
 
-// export const userPartialValidate = (object) => {
-//     return userSchema.partial().safeParse(object)
-// }
+export const productPartialValidate = (object) => {
+    return productSchema.partial().safeParse(object)
+}

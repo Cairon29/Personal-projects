@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import { UserRouter } from './routes/users.js'
 import { AuthRouter } from './routes/auth.js'
+import { ProductsRouter } from './routes/products.js'
 
 const PORT = 5556
 const app = express()
@@ -28,6 +29,7 @@ app.use(cors({
 
 app.use('/api/auth', AuthRouter)
 app.use('/api/users', UserRouter)
+app.use('/api/products', ProductsRouter)
 
 app.listen(PORT, () => {
     console.log('currently running on port 5556');
