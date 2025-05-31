@@ -18,7 +18,11 @@ export class AuthModel {
 
             await conn.commit()
 
-            return response = { ...response, status: 200, value: result }
+            if (result.length === 0) {
+                return response = { ...response, status: 404, value: { message: 'User not found' } }
+            } else {
+                return response = { ...response, status: 200, value: result }
+            }
 
         } catch (error) {
             await conn.rollback()
