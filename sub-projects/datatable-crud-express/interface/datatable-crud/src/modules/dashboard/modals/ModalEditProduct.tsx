@@ -1,7 +1,6 @@
-import React from 'react'
 import Modal from 'react-modal';
-import type { ProductType } from '../../types/products';
-import { GenericInput } from '../../components/GenericInput';
+import type { ProductType } from '../../../types/products';
+import { GenericInput } from '../../../components/GenericInput';
 
 Modal.setAppElement('#root');
 
@@ -10,7 +9,7 @@ type Props = {
     isModalOpen: boolean;
     setIsModalOpen: (value: boolean) => void;
     selectedProduct: ProductType | null;
-    handleSave: () => void;
+    handleSaveEdit: () => void;
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     formData: Partial<ProductType>;
 }
@@ -19,7 +18,7 @@ export const ModalComponent = ({
         isModalOpen, 
         setIsModalOpen, 
         selectedProduct, 
-        handleSave, 
+        handleSaveEdit, 
         handleInputChange, 
         formData 
     }: Props) => {
@@ -37,7 +36,7 @@ export const ModalComponent = ({
                 {selectedProduct && (
                     <form onSubmit={(e) => {
                         e.preventDefault();
-                        handleSave();
+                        handleSaveEdit();
                     }}>
                         <GenericInput
                             label="Nombre:"

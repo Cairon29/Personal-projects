@@ -11,6 +11,7 @@ export const productSchema = z.object({
 
 
 export type ProductType = z.infer<typeof productSchema>
+export type NewProductType = Omit<ProductType, 'id_producto' | 'creado_en'>;
 
 export type ProductArrayType = [
     number,

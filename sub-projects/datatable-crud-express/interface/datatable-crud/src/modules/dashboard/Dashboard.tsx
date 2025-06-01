@@ -1,18 +1,26 @@
 import { useEffect, useState } from 'react';
 import { Datatable } from './Datatable';
-import { ModalComponent } from './ModalComponent';
+import { ModalComponent } from './modals/ModalEditProduct';
 import { columns } from './Columns';
-import type { ProductType } from '../../types/products';
+import type { NewProductType, ProductType } from '../../types/products';
 import './styles.css';
+import { ModalNewProduct } from './modals/ModalNewProduct';
 
 // Modal.setAppElement('#root');
 
 export const Dashboard = () => {
     const [data, setData] = useState<Array<ProductType>>([]);
     const [apiError, setApiError] = useState<null | string>(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
     const [formData, setFormData] = useState<Partial<ProductType>>({});
+    const [new_product, setNewProduct] = useState<NewProductType> ({
+        nombre: '',
+        descripcion: '',
+        precio: 0,
+        cantidad: 0
+    });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -60,13 +68,25 @@ export const Dashboard = () => {
             precio: product.precio,
             cantidad: product.cantidad
         });
-        setIsModalOpen(true);
+        setIsEditModalOpen(true);
     };
+
+    const handleAdd = () => {
+        setIsAddModalOpen(true);
+    }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
+            [name]: value
+        });
+    };
+
+    const handleNewInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setNewProduct({
+            ...new_product,
             [name]: value
         });
     };
@@ -79,7 +99,30 @@ export const Dashboard = () => {
         };
     };
 
-    const handleSave = () => {
+    const handleSaveNew = () => {
+        const parsedData = parseFormData(new_product);
+
+        fetch('http://localhost:5556/api/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(parsedData)
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Error al crear');
+            return response.json();
+        })
+        .then(() => {
+            setData([...data, parsedData]);
+            setIsAddModalOpen(false);
+        })
+        .catch(error => {
+            setApiError(`Error al crear el producto: ${error.message}`);
+        });
+    }
+
+    const handleSaveEdit = () => {
         if (!selectedProduct || !formData) return;
 
         const parsedData = parseFormData(formData);
@@ -107,7 +150,7 @@ export const Dashboard = () => {
             );
             
             setData(updatedData);
-            setIsModalOpen(false);
+            setIsEditModalOpen(false);
         })
         .catch(error => {
             setApiError(`Error al actualizar el producto: ${error.message}`);
@@ -148,13 +191,22 @@ export const Dashboard = () => {
             <Datatable data={data} columns={columns}/>
 
             <ModalComponent
-                isModalOpen={isModalOpen}
-                setIsModalOpen={setIsModalOpen}
+                isModalOpen={isEditModalOpen}
+                setIsModalOpen={setIsEditModalOpen}
                 selectedProduct={selectedProduct}
-                handleSave={handleSave}
+                handleSaveEdit={handleSaveEdit}
                 handleInputChange={handleInputChange}
                 formData={formData}
             />
+
+            <ModalNewProduct
+                isModalOpen={isAddModalOpen}
+                setIsModalOpen={setIsAddModalOpen}
+                handleSaveNew={handleSaveNew}
+                handleInputChange={handleNewInputChange}
+                formData={new_product}
+            />
+            <button className='modal-btn-add' onClick={handleAdd}>Add ➕</button>
         </section>
     )
 }
