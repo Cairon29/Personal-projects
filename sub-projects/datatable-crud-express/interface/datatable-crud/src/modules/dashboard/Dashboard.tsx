@@ -1,18 +1,11 @@
 import { useEffect, useState } from 'react';
-import Modal from 'react-modal';
-import DataTable from 'datatables.net-react';
-import DataTablesCore from 'datatables.net-bs5';
-import 'datatables.net-buttons-bs5';
-import 'datatables.net-columncontrol-bs5';
-import 'datatables.net-responsive-bs5';
-import 'datatables.net-select-bs5';
+import { Datatable } from './Datatable';
+import { ModalComponent } from './ModalComponent';
+import { columns } from './Columns';
 import type { ProductType } from '../../types/products';
 import './styles.css';
 
-// Configuración básica para react-modal
-Modal.setAppElement('#root');
-
-DataTable.use(DataTablesCore);
+// Modal.setAppElement('#root');
 
 export const Dashboard = () => {
     const [data, setData] = useState<Array<ProductType>>([]);
@@ -30,6 +23,7 @@ export const Dashboard = () => {
                     const response = await request.json();
                     const processed_data = response.map((product: ProductType) => ({
                         ...product,
+                        precio: Number(product.precio), 
                         creado_en: new Date(product.creado_en).toLocaleDateString()
                     }));
                     setData(processed_data);
@@ -73,57 +67,52 @@ export const Dashboard = () => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: name === 'precio' || name === 'cantidad' ? Number(value) : value
+            [name]: value
         });
+    };
+
+    const parseFormData = (data: Partial<ProductType>): any => {
+        return {
+            ...data,
+            precio: data.precio ? Number(data.precio) : 0,
+            cantidad: data.cantidad ? Number(data.cantidad) : 0
+        };
     };
 
     const handleSave = () => {
         if (!selectedProduct || !formData) return;
 
+        const parsedData = parseFormData(formData);
+        
         fetch(`http://localhost:5556/api/products?id=${selectedProduct.id_producto}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(parsedData)
         })
         .then(response => {
             if (!response.ok) throw new Error('Error al actualizar');
             return response.json();
         })
-        .then(updatedProduct => {
-            // Actualizar el estado local con el producto actualizado
-            setData(data.map(product => 
-                product.id_producto === updatedProduct.id_producto 
-                    ? {...updatedProduct, creado_en: new Date(updatedProduct.creado_en).toLocaleDateString()} 
+        .then(() => {
+            const updatedData = data.map(product => 
+                product.id_producto === parsedData.id_producto 
+                    ? {
+                        ...parsedData, 
+                        precio: Number(parsedData.precio),
+                        creado_en: new Date(parsedData.creado_en).toLocaleDateString()
+                      } 
                     : product
-            ));
+            );
+            
+            setData(updatedData);
             setIsModalOpen(false);
         })
         .catch(error => {
             setApiError(`Error al actualizar el producto: ${error.message}`);
         });
     };
-
-    const columns = [
-        { data: 'id_producto', title: 'ID' },
-        { data: 'nombre', title: 'Nombre' },
-        { data: 'descripcion', title: 'Descripción' },
-        { data: 'precio', title: 'Precio' },
-        { data: 'cantidad', title: 'Cantidad' },
-        { data: 'creado_en', title: 'Creado En' },
-        { 
-            title: 'Acciones',
-            data: null, 
-            orderable: false,
-            render: (data: any, type: any, row: ProductType) => {
-                return `
-                    <button class="btn-edit" data-id="${row.id_producto}">✏️ Editar</button>
-                    <button class="btn-delete" data-id="${row.id_producto}">🗑️ Borrar</button>
-                `;
-            }
-        }
-    ];
 
     useEffect(() => {
         const table = document.querySelector('.display');
@@ -156,102 +145,16 @@ export const Dashboard = () => {
             {apiError && <div className="alert alert-danger">{apiError}</div>}
             <br />
             
-            <DataTable
-                columns={columns}
-                data={data}
-                className="display"
-                options={{
-                    responsive: true,
-                    select: true
-                }}
+            <Datatable data={data} columns={columns}/>
+
+            <ModalComponent
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                selectedProduct={selectedProduct}
+                handleSave={handleSave}
+                handleInputChange={handleInputChange}
+                formData={formData}
             />
-            
-            {/* Modal de Edición */}
-            <Modal
-                isOpen={isModalOpen}
-                onRequestClose={() => setIsModalOpen(false)}
-                contentLabel="Editar Producto"
-                className="modal"
-                overlayClassName="modal-overlay"
-            >
-                <div className="modal-content">
-                    <h2>Editar Producto</h2>
-                    
-                    {selectedProduct && (
-                        <form onSubmit={(e) => {
-                            e.preventDefault();
-                            handleSave();
-                        }}>
-                            <div className="form-group">
-                                <label>Nombre:</label>
-                                <input
-                                    type="text"
-                                    name="nombre"
-                                    value={formData.nombre || ''}
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                    required
-                                />
-                            </div>
-                            
-                            <div className="form-group">
-                                <label>Descripción:</label>
-                                <input
-                                    type="text"
-                                    name="descripcion"
-                                    value={formData.descripcion || ''}
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                    required
-                                />
-                            </div>
-                            
-                            <div className="form-group">
-                                <label>Precio:</label>
-                                <input
-                                    type="number"
-                                    name="precio"
-                                    value={formData.precio || 0}
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                    min="0"
-                                    step="0.01"
-                                    required
-                                />
-                            </div>
-                            
-                            <div className="form-group">
-                                <label>Cantidad:</label>
-                                <input
-                                    type="number"
-                                    name="cantidad"
-                                    value={formData.cantidad || 0}
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                    min="0"
-                                    required
-                                />
-                            </div>
-                            
-                            <div className="modal-buttons">
-                                <button 
-                                    type="button" 
-                                    className="btn btn-secondary"
-                                    onClick={() => setIsModalOpen(false)}
-                                >
-                                    Cancelar
-                                </button>
-                                <button 
-                                    type="submit" 
-                                    className="btn btn-primary"
-                                >
-                                    Guardar Cambios
-                                </button>
-                            </div>
-                        </form>
-                    )}
-                </div>
-            </Modal>
         </section>
     )
 }
