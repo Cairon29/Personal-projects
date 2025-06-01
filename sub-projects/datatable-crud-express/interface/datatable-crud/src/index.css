@@ -30,16 +30,17 @@ body {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #3f6298;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #4a91cf;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: auto;
 }
 
 button {
@@ -55,7 +56,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #4a91cf;
 }
 button:focus,
 button:focus-visible {
@@ -65,9 +66,7 @@ button:focus-visible {
 .user-form {
   display: flex;
   flex-direction: column;
-  /* justify-content: start; */
   align-items: start;
-  
 }
 
 .input-form {
@@ -78,6 +77,14 @@ button:focus-visible {
   border-style: none;
   border: #213547 2px solid;
   transition: 0.2s ease-in-out all;
+}
+
+tr {
+  text-align: start;
+}
+
+.table-content {
+  min-width: 90%;
 }
 
 .input-form:hover {

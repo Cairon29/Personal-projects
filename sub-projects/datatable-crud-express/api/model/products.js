@@ -11,7 +11,7 @@ export class ProductsModel {
             try {
                 await conn.beginTransaction()
                 const [result] = await conn.execute(
-                    "SELECT * FROM productos WHERE id_usuario = ?;",
+                    "SELECT * FROM productos WHERE id_producto = ?;",
                     [id]
                 )
                 return response = { ...response, status: 200, value: result }
@@ -79,7 +79,7 @@ export class ProductsModel {
             await conn.beginTransaction()
 
             const [result] =  await conn.execute(
-                "UPDATE productos SET " + concatedKeys + "WHERE id_producto = ?",
+                "UPDATE productos SET " + concatedKeys + " WHERE id_producto = ?",
                 [...values, id]
             )
 

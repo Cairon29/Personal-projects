@@ -11,7 +11,7 @@ PATCH  http://localhost:5556/api/users?id=11
 Content-Type: application/json
 
 {
-    "apellidos": "Cortez"
+    "apellidos": "Cortez Perez"
 }
 
 #####################################################

@@ -62,7 +62,7 @@ export const Register = () => {
     return (
         <>
             <h1>Register</h1>
-
+            <br />
             <form action="" onSubmit={handleSubmit(onSubmit)} className="user-form">
                 <CustomInputRegister name="nombres" control={control} label="Nombres" error={errors.nombres} placeholder="John"/>
                 <CustomInputRegister name="apellidos" control={control} label="Apellidos" error={errors.apellidos} placeholder="Doe"/>
