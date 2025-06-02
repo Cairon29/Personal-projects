@@ -1,53 +1,53 @@
-import conn from "../config/connection.js"
+import { conn, SALT_ROUNDS } from "../config/config.js"
+import bcrypt from "bcrypt"
+
 
 export class AuthModel {
     static async login({ data }) {
-         let response = { 
-            status: 400,
-            value: { message: 'No user deleted' }
+
+    const { email, password } = data;
+
+    try {
+        const [rows] = await conn.execute(
+            "SELECT * FROM usuarios WHERE email = ?;",
+            [email]
+        );
+
+        if (rows.length === 0) {
+            return { status: 404, value: { message: "User not found" } };
         }
 
-        const { email, password } = data
+        const usuario = rows[0];
+        const hashAlmacenado = usuario.password;
 
-        try {
-            await conn.beginTransaction()
-            const [result] = await conn.execute(
-                'SELECT * FROM usuarios WHERE email = ? AND password = ? ;',
-                [email, password]
-            )
+        const isValid = await bcrypt.compare(password, hashAlmacenado);
 
-            await conn.commit()
+        if (!isValid) {
+            return { status: 401, value: { message: "Invalid credentials" } };
+        }
 
-            if (result.length === 0) {
-                return response = { ...response, status: 404, value: { message: 'User not found' } }
-            } else {
-                return response = { ...response, status: 200, value: result }
-            }
+        return { status: 200, value: usuario };
 
         } catch (error) {
-            await conn.rollback()
-            return response = { ...response, status: 500, value: error }
+            return { status: 500, value: error };
         }
     }
 
     static async register({ data }){
-        let response = { 
-            status: 400,
-            value: { message: 'No user deleted' }
-        }
-
         try{
+            const encrypted_data = { ...data, password: await bcrypt.hash(data.password, SALT_ROUNDS) }
+
             await conn.beginTransaction()
             const [result] = await conn.execute(
                 'INSERT INTO usuarios (nombres, apellidos, email, password, rol) VALUES (?, ?, ?, ?, ?)',
-                [...Object.values(data)] 
+                [...Object.values(encrypted_data)] 
             )
             await conn.commit()
-            return response = { ...response, status: 200, value: result }
+            return response = { status: 200, value: result }
 
         } catch (err) {
             await conn.rollback()
-            return response = { ...response, status: 500, value: err.message }
+            return response = { status: 500, value: err.message }
         }
     }
 }

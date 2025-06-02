@@ -1,4 +1,4 @@
-import conn from "../config/connection.js"
+import { conn } from "../config/config.js"
 
 export class UserModel {
     static async getAll ({ id }) {

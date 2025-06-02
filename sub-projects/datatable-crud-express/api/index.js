@@ -3,10 +3,9 @@ import cors from 'cors'
 import { UserRouter } from './routes/users.js'
 import { AuthRouter } from './routes/auth.js'
 import { ProductsRouter } from './routes/products.js'
+import { PORT } from './config/config.js'
 
-const PORT = 5556
 const app = express()
-
 
 app.use(express.json())
 app.use(cors({

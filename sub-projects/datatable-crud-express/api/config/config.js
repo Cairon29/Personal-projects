@@ -1,10 +1,11 @@
 import mysql from 'mysql2/promise'
 
-const conn = await mysql.createConnection({
+export const conn = await mysql.createConnection({
     host: 'localhost',
     port: 5555,
     user: 'root',
     database: 'datatable_crud'
 })
 
-export default conn;
+
+export const { PORT = 5556, SALT_ROUNDS = 10 } = process.env
