@@ -39,3 +39,37 @@ function viralAdvertising(n: number): number {
 
     return totalLikes;
 }
+
+
+
+function jumpingOnClouds(c: number[]): number {
+    let jumps = 0;
+    let i = 0;
+
+    while (i < c.length - 1) {
+        if (i + 2 < c.length && c[i + 2] === 0) {
+            i += 2;
+        } else {
+            i += 1;
+        }
+        jumps++;
+    }
+
+    return jumps;
+}
+
+function hurdleRace(k: number, height: number[]): number {
+    
+    let doses = 0;
+    
+    for (const h of height) {
+        if (k < h) {
+            const diference = (h-k)
+            k += diference
+            
+            doses += diference
+        }
+    }
+    return doses;
+}
+

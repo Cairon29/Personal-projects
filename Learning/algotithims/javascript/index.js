@@ -1,14 +1,14 @@
 //1
 
-let weekDays = new Array(7);
+// let weekDays = new Array(7);
 
-let d = 1;
+// let d = 1;
 
-while (weekDays.length <= 7){
-    let day = prompt(`Escribe el dia ${d}`);
-    weekDays.push(day)
-    d++
-};
+// while (weekDays.length <= 7){
+//     let day = prompt(`Escribe el dia ${d}`);
+//     weekDays.push(day)
+//     d++
+// };
 
 // conosole.table(weekDays);
 
@@ -308,3 +308,21 @@ const  buscar = (arr, target) => {
 // buscar(numbers, target);
 
 
+function getMoneySpent(keyboards, drives, b) {
+    let diccionario = {}
+    
+    for (let i = 0; i < keyboards.length; i++) {
+        for (let j = 0; j < drives.length; j++) {
+            let sum = keyboards[i] + drives[j]
+            if ( sum <= b ) {
+                diccionario[sum] = [i, j]
+            }
+        }   
+    }
+ 
+    let stringArray = Object.keys(diccionario)
+
+    return Math.max(...stringArray.map(Number))
+}
+
+console.log(getMoneySpent([3, 1], [5, 2, 8], 10));
