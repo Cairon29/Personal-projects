@@ -28,25 +28,30 @@ app.get('/cancel', (req, res) => {
 });
 
 app.post('/create-checkout-session', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'T-shirt',
-          },
-          unit_amount: 2000,
-        },
-        quantity: 1,
+  const cart = req.body.cart || [];
+  const line_items = cart.map(item => (
+    {
+      price_data: {
+        currency: 'usd',
+        product_data: { name: item.name },
+        unit_amount: item.price,
       },
-    ],
-    mode: 'payment',
-    success_url: `http://localhost:${PORT}/success`,
-    cancel_url: `http://localhost:${PORT}/cancel`,
-  });
+      quantity: item.quantity,
+    }
+  ));
 
-  res.redirect(303, session.url);
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items,
+      mode: 'payment',
+      success_url: `http://localhost:${PORT}/success`,
+      cancel_url: `http://localhost:${PORT}/cancel`,
+    });
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.listen(PORT, () => {
