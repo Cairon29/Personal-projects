@@ -1,0 +1,22 @@
+{
+  "name": "stripe-v1",
+  "version": "1.0.0",
+  "description": "First approach to stripe payment gateaway",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch app.js"
+  },
+  "keywords": [
+    "stripe",
+    "payment"
+  ],
+  "author": "David Jitomate",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "express": "5.1.0",
+    "stripe": "18.3.0"
+  }
+}
