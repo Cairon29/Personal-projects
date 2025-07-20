@@ -307,7 +307,8 @@ const  buscar = (arr, target) => {
 }
 // buscar(numbers, target);
 
-
+// 15 
+// Buscar la suma maxima de dos numeros de dos arrays teniendo en cuenta el limite impuesto por el tercer parametro de la funcion
 function getMoneySpent(keyboards, drives, b) {
     let diccionario = {}
     
