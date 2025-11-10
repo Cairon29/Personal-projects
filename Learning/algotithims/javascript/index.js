@@ -326,4 +326,53 @@ function getMoneySpent(keyboards, drives, b) {
     return Math.max(...stringArray.map(Number))
 }
 
-console.log(getMoneySpent([3, 1], [5, 2, 8], 10));
+// console.log(getMoneySpent([3, 1], [5, 2, 8], 10));
+
+// Complete the catAndMouse function below.
+function catAndMouse(x, y, z) {
+    
+    const size = Math.max(x, y, z)
+    const myArray = Array.from({ length: size }, (_, index) => index);
+    myArray.push(size)
+
+    let position_x = x
+    let position_y = y
+
+    for (let i = 0; i <= myArray.length; i++) {
+        if (position_y < z) {
+            position_y++
+        } else {
+            position_y--
+        }
+
+        if (position_x < z) {
+            position_x++
+        } else {
+            position_x--
+        }
+
+
+        if (position_x == z && position_y == z) {
+            console.log('Mouse C')
+            return
+        }
+        
+        if (position_x == z) {
+            console.log('Cat A')
+            return
+        }
+
+        if (position_y == z) {
+            console.log('Cat B')
+            return
+        }
+    }
+}
+
+// catAndMouse(4, 9, 12)
+// catAndMouse(6, 4, 1)
+// catAndMouse(1, 3, 2)
+// catAndMouse(1, 2, 3)
+
+catAndMouse(22, 75, 70)
+catAndMouse(33, 86, 59)
