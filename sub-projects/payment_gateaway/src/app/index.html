@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+    <script src="https://checkout.bold.co/library/boldPaymentButton.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Premium Store</h1>
+            <p class="subtitle">Select your plan to get started</p>
+        </header>
+
+        <main class="products-grid">
+            <!-- Product 1 -->
+            <article class="product-card">
+                <div class="product-image">📦</div>
+                <h2 class="product-title">Basic Plan</h2>
+                <p class="product-price">$19.99</p>
+                <p class="product-description">Perfect for starters. Includes essential features and 24/7 support.</p>
+                <button id="basic_btn" value="19.99" class="btn" onclick="goToCheckout('basic')">Buy Now</button>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="product-card">
+                <div class="product-image">🚀</div>
+                <h2 class="product-title">Pro Plan</h2>
+                <p class="product-price">$49.99</p>
+                <p class="product-description">For growing businesses. Advanced analytics and priority support.</p>
+                <button id="pro_btn" value="49.99" class="btn" onclick="goToCheckout('pro')">Buy Now</button>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="product-card">
+                <div class="product-image">💎</div>
+                <h2 class="product-title">Enterprise</h2>
+                <p class="product-price">$99.99</p>
+                <p class="product-description">Ultimate solution. dedicated account manager and custom integrations.</p>
+                <button id="enterprise_btn" value="99.99" class="btn" onclick="goToCheckout('enterprise')">
+                    BuyNow
+                </button>
+                <script data-bold-button="light-M" data-api-key="LLAVE_DE_IDENTIDAD"></script>
+            </article>
+        </main>
+    </div>
+</body>
+
+</html>

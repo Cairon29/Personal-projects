@@ -1,3 +1,6 @@
 __pycache__/
 venv/
 mlruns
+node_modules
+.venv
+.env
