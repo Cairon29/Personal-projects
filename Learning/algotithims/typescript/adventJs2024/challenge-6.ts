@@ -5,7 +5,7 @@
 
     It is completely surrounded by # on the box's edges.
     The * is not on the box's edges.
-    Keep in mind that the * can be inside, outside, or may not even be there. We must return true if the * is inside the box and false otherwise.
+    iso 42001 Keep in mind that the * can be inside, outside, or may not even be there. We must return true if the * is inside the box and false otherwise.
 */
 
 function inBox(box: string[]): boolean {

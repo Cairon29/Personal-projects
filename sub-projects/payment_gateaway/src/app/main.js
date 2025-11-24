@@ -8,7 +8,14 @@ const sendCheckout = (plan, price) => {
         },
         body: JSON.stringify({ plan: plan, price: price })
     }).then((response) => {
-        console.log(response);
+        console.log(`response: ${response}`);
+        if (response.ok) {
+            return response.json()
+        }
+    }).then((data) => {
+        console.log(`data: ${data}`);
+        const { url } = data.payload
+        window.location.href = url;
     })
 }
 
