@@ -1,0 +1,30 @@
+{
+  "name": "scheduler",
+  "version": "1.0.0",
+  "description": "App for setting schedules and setting notifications",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "nodemon --exec ts-node src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.10",
+    "@types/pg": "^8.16.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
+    "express": "5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "nodemon": "3.1.11",
+    "pg": "^8.17.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19"
+  }
+}
