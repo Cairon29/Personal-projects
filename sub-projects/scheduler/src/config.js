@@ -12,6 +12,7 @@ export const config = {
     port: process.env.PORT || 5555,
     nodeEnv: process.env.NODE_ENV || 'development',
     githubToken: process.env.GITHUB_TOKEN,
+    saltRounds: process.env.SALT_ROUNDS || 10,
   }
 }
 
