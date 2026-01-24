@@ -14,6 +14,7 @@ CREATE TABLE users (
     full_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     phone VARCHAR(10) NOT NULL,
+    password VARCHAR(100) NOT NULL,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
@@ -106,3 +107,9 @@ COMMENT ON TABLE events IS 'Entries of users scheduled happenings';
 COMMENT ON TABLE labels IS 'Descriptive words for identifying events';
 COMMENT ON TABLE event_label_inter IS 'Intermediate table for many-to-many relationship between events and labels';
 COMMENT ON TABLE user_event_inter IS 'Intermediate table for many-to-many relationship between users and events';
+
+
+-- Add password column to users table
+ALTER TABLE users ADD COLUMN password varchar(200);
+
+ALTER TABLE users ALTER COLUMN password SET not null;
