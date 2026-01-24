@@ -2,7 +2,8 @@
 import bcrypt from 'bcrypt';
 import { pool } from '../../db.js';
 
-import Res from '../../types/types.js';
+import { Res, User } from '../../types/types.js';
+
 
 export class UserService {
     static getUsers = async (): Promise<Res> => {
@@ -32,7 +33,8 @@ export class UserService {
         }
     }
 
-    static createUser = async (full_name: string, email: string, phone: string, password: string): Promise<Res> => {
+    static createUser = async (input_data: User): Promise<Res> => {
+        const { full_name, email, phone, password } = input_data;
         
         let hashed_password: string = '';
         hashed_password = await bcrypt.hash(password, 10);
@@ -54,6 +56,94 @@ export class UserService {
             return { 
                 status: 500,
                 error: 'Error creating user.', 
+                details: error.message
+            }
+        }
+    }
+
+    static deleteUser = async (id: string): Promise<Res> => {
+        try {
+            const result = await pool.query(
+                'DELETE FROM users WHERE id = $1',
+                [id]
+            );
+            
+            if (result.rowCount === 0) {
+                return {
+                    status: 404,
+                    error: 'User not found',
+                    details: 'No user found with the provided id'
+                }
+            }
+
+            return {
+                status: 200,
+                details: 'User deleted successfully',
+                data: result.rows
+            }
+        } catch (error: any) {
+            console.error('Error deleting user:', error)
+            return { 
+                status: 500,
+                error: 'Error deleting user.', 
+                details: error.message
+            }
+        }
+
+    }
+
+    static modifyUser = async (input_data: User): Promise<Res> => {
+        try {
+            const { id } = input_data;
+
+            const data: Partial<User> = {};
+
+            for (const key in input_data) {
+                const k = key as keyof User;
+                if (k !== 'id' && input_data[k] !== undefined) {
+                    data[k] = input_data[k];
+                }
+            }
+
+            if (Object.keys(data).length === 0) {
+                return {
+                    status: 400,
+                    error: 'No fields provided for update'
+                };
+            }
+
+            if (data.password) {
+                data.password = await bcrypt.hash(data.password, 10);
+            }
+
+            const keys = Object.keys(data);
+            const setClause = keys.map((key, index) => `${key} = $${index + 1}`).join(', ');
+            const values = keys.map(key => data[key as keyof User]);
+            values.push(id);
+
+            const result = await pool.query(
+                `UPDATE users SET ${setClause} WHERE id = $${values.length} RETURNING *`,
+                values
+            );
+            
+            if (result.rowCount === 0) {
+                return {
+                    status: 404,
+                    error: 'User not found',
+                    details: 'No user found with the provided id'
+                }
+            }
+
+            return {
+                status: 200,
+                details: 'User modified successfully',
+                data: result.rows[0]
+            }
+        } catch (error: any) {
+            console.error('Error modifying user:', error)
+            return { 
+                status: 500,
+                error: 'Error modifying user.', 
                 details: error.message
             }
         }

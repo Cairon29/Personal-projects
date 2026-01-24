@@ -1,5 +1,3 @@
-
-
 #header {
     margin: auto;
     width: 100%;
@@ -15,15 +13,15 @@
     margin: 0px;
     overflow: hidden;
     white-space: nowrap;
-    animation: 
+    animation:
         typewritter 3s steps(23) forwards,
-        blink .5s steps(1) infinite alternate; 
+        blink .5s steps(1) infinite alternate;
 }
 
 @keyframes typewritter {
     from {
         width: 0%;
-    }   
+    }
 
     to {
         width: 100%;

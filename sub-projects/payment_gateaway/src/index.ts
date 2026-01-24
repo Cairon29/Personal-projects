@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 const DIVISA = 'USD'
-const BOLD_TEST_API_KEY = 'x-api-key <aqui va la llave>'
+const BOLD_TEST_API_KEY = 'x-api-key DLquLEOEIcttEM1u9MHejsmHAREoFe0XSevbkaOWmGU'
 
 
 app.use(express.json());

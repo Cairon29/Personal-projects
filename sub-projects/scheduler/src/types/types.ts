@@ -5,4 +5,12 @@ interface Res {
     data?: any[]
 }
 
-export default Res
+interface User {
+    id?: string,
+    full_name?: string,
+    email?: string,
+    phone?: string,
+    password?: string
+}
+
+export { Res, User }
