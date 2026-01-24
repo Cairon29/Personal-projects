@@ -1,11 +1,12 @@
-import Res from '../../types/types.ts'
+import { Res } from '../../types/types.ts'
 import { pool } from '../../db.js';
+import { generateToken }  from '../../utils/handle_token.ts';
 // @ts-ignore
 import bcrypt from 'bcrypt';
 
 export class AuthService {
 
-    async login(email: string, password: string): Promise<Res> {
+    static async login(email: string, password: string): Promise<Res> {
         const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
         if (result.rows.length === 0) {
             return { details: 'User not found', status: 404 };
@@ -19,6 +20,13 @@ export class AuthService {
         }
 
         console.log(result);
-        return { details: `Login successful. User: ${user.full_name}`, status: 200 };
+        return { 
+            details: `Login successful. User: ${user.full_name}`, 
+            status: 200, 
+            data: {
+                user: user,
+                token: generateToken(user.id.toString())
+            }
+        };
     }
 }

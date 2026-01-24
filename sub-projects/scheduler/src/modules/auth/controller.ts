@@ -9,9 +9,8 @@ export class AuthController {
             return res.status(400).send({ message: 'Email and password are required' });
         }
 
-        const authService = new AuthService();
-        const { details, status } = await authService.login(email, password);
+        const { details, status, data } = await AuthService.login(email, password);
 
-        return res.status(status).send({ details });
+        return res.status(status).send({ details, data: data? data : null });
     }
 }

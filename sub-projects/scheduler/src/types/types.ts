@@ -2,7 +2,7 @@ interface Res {
     status: number,
     error?: string,
     details?: string,
-    data?: any[]
+    data?: any
 }
 
 interface User {

@@ -1,8 +1,9 @@
 // @ts-ignore
 import bcrypt from 'bcrypt';
 import { pool } from '../../db.js';
-
 import { Res, User } from '../../types/types.js';
+import { generateToken }  from '../../utils/handle_token.ts';
+
 
 
 export class UserService {
@@ -49,7 +50,10 @@ export class UserService {
             return {
                 status: 201,
                 details: 'User created successfully',
-                data: result.rows
+                data: {
+                    user: result.rows[0],
+                    token: generateToken(result.rows[0].id)
+                }
             }
         } catch (error: any) {
             console.error('Error creating user:', error)
