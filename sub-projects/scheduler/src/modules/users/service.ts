@@ -2,7 +2,7 @@
 import bcrypt from 'bcrypt';
 import { pool } from '../../db.js';
 import { Res, User } from '../../types/types.js';
-import { generateToken }  from '../../utils/handle_token.ts';
+import { generateToken } from '../../utils/handle_token.ts';
 
 
 
@@ -10,33 +10,36 @@ export class UserService {
     static getUsers = async (): Promise<Res> => {
         try {
             const result = await pool.query('SELECT * FROM users')
-            
-            if ( !result.rows|| result.rows.length === 0 ) {
+
+            if (!result.rows || result.rows.length === 0) {
                 return {
                     status: 404,
-                    error: 'No users found'
+                    error: 'No users found',
+                    success: false
                 }
             }
 
             return {
                 status: 200,
                 details: 'Users fetched successfully',
-                data: result.rows
+                data: result.rows,
+                success: true
             }
         } catch (error: any) {
             console.error('Error fetching users:', error)
-            
-            return { 
+
+            return {
                 status: 500,
-                error: 'Error fetching users.', 
-                details: error.message
+                error: 'Error fetching users.',
+                details: error.message,
+                success: false
             }
         }
     }
 
     static createUser = async (input_data: User): Promise<Res> => {
         const { full_name, email, phone, password } = input_data;
-        
+
         let hashed_password: string = '';
         hashed_password = await bcrypt.hash(password, 10);
 
@@ -53,14 +56,16 @@ export class UserService {
                 data: {
                     user: result.rows[0],
                     token: generateToken(result.rows[0].id)
-                }
+                },
+                success: true
             }
         } catch (error: any) {
             console.error('Error creating user:', error)
-            return { 
+            return {
                 status: 500,
-                error: 'Error creating user.', 
-                details: error.message
+                error: 'Error creating user.',
+                details: error.message,
+                success: false
             }
         }
     }
@@ -71,26 +76,29 @@ export class UserService {
                 'DELETE FROM users WHERE id = $1',
                 [id]
             );
-            
+
             if (result.rowCount === 0) {
                 return {
                     status: 404,
                     error: 'User not found',
-                    details: 'No user found with the provided id'
+                    details: 'No user found with the provided id',
+                    success: false
                 }
             }
 
             return {
                 status: 200,
                 details: 'User deleted successfully',
-                data: result.rows
+                data: result.rows,
+                success: true
             }
         } catch (error: any) {
             console.error('Error deleting user:', error)
-            return { 
+            return {
                 status: 500,
-                error: 'Error deleting user.', 
-                details: error.message
+                error: 'Error deleting user.',
+                details: error.message,
+                success: false
             }
         }
 
@@ -112,7 +120,8 @@ export class UserService {
             if (Object.keys(data).length === 0) {
                 return {
                     status: 400,
-                    error: 'No fields provided for update'
+                    error: 'No fields provided for update',
+                    success: false
                 };
             }
 
@@ -129,26 +138,29 @@ export class UserService {
                 `UPDATE users SET ${setClause} WHERE id = $${values.length} RETURNING *`,
                 values
             );
-            
+
             if (result.rowCount === 0) {
                 return {
                     status: 404,
                     error: 'User not found',
-                    details: 'No user found with the provided id'
+                    details: 'No user found with the provided id',
+                    success: false
                 }
             }
 
             return {
                 status: 200,
                 details: 'User modified successfully',
-                data: result.rows[0]
+                data: result.rows[0],
+                success: true
             }
         } catch (error: any) {
             console.error('Error modifying user:', error)
-            return { 
+            return {
                 status: 500,
-                error: 'Error modifying user.', 
-                details: error.message
+                error: 'Error modifying user.',
+                details: error.message,
+                success: false
             }
         }
     }

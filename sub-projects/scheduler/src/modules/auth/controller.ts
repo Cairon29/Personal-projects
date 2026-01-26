@@ -6,11 +6,14 @@ export class AuthController {
         const { email, password } = req.body;
 
         if (!email || !password) {
-            return res.status(400).send({ message: 'Email and password are required' });
+            return res.status(400).send({ error: 'Email and password are required' });
         }
 
-        const { details, status, data } = await AuthService.login(email, password);
+        const { details, status, data, success } = await AuthService.login(email, password);
 
-        return res.status(status).send({ details, data: data? data : null });
+        console.log({ details, status, data, success });
+
+
+        return res.status(status).json({ details, data: data ? data : null, success });
     }
 }

@@ -1,8 +1,9 @@
 interface Res {
     status: number,
+    success: boolean,
     error?: string,
     details?: string,
-    data?: any
+    data?: {} | null | any[]
 }
 
 interface User {
