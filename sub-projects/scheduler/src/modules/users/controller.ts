@@ -3,6 +3,7 @@ import type { Request, Response } from "express";
 import bcrypt from 'bcrypt';
 import { UserService } from './service.ts';
 import { User } from "../../types/types.ts";
+import { checkFields, checkOptionalFields } from "../../utils/req_field_checker.ts";
 
 export class UserController {
     static getUsers = async (req: Request, res: Response) => {
@@ -23,19 +24,14 @@ export class UserController {
     }
 
     static createUser = async (req: Request, res: Response) => {
-        const { full_name, email, phone, password }: User = req.body;
+        const req_fields = ['full_name', 'email', 'phone', 'password']
 
-        const requested_fields = ['full_name', 'email', 'phone', 'password']
-
-        for (const field of requested_fields) {
-            if (!req.body[field]) {
-                return res.status(400).send({
-                    error: `Missing required field: ${field}`,
-                    status: 400,
-                    success: false
-                })
-            }
+        const check_result = checkFields(req, req_fields);
+        if (check_result) {
+            return res.status(check_result.status).send(check_result);
         }
+
+        const { full_name, email, phone, password }: User = req.body;
 
         const input_data: User = {
             full_name,
