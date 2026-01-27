@@ -108,8 +108,3 @@ COMMENT ON TABLE labels IS 'Descriptive words for identifying events';
 COMMENT ON TABLE event_label_inter IS 'Intermediate table for many-to-many relationship between events and labels';
 COMMENT ON TABLE user_event_inter IS 'Intermediate table for many-to-many relationship between users and events';
 
-
--- Add password column to users table
-ALTER TABLE users ADD COLUMN password varchar(200);
-
-ALTER TABLE users ALTER COLUMN password SET not null;
