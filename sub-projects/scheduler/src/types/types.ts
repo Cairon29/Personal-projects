@@ -26,7 +26,8 @@ interface CreateEventData {
     labels?: Labels,
 }
 
-type Labels = number[]
+type Label = { id: number, name: string }
+type Labels = number[] | Label[]
 
 interface Invitations {
     user_id: string | string[],
