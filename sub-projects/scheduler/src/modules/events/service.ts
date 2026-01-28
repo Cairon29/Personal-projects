@@ -6,7 +6,62 @@ export class EventService {
     static getEvents = async (): Promise<Res> => {
         try {
             const result = await pool.query(
-                'SELECT * FROM events'
+                `
+                SELECT 
+                    e.id AS event_id,
+                    e.name AS event_name,
+                    e.description AS event_description,
+                    e.selected_date,
+                    e.created_at AS event_created_at,
+                    e.updated_at AS event_updated_at,
+                    e.will_repeat,
+                    e.repeat_rate,
+                    e.created_by AS creator_id,
+                    creator.full_name AS creator_name,
+                    creator.email AS creator_email,
+                    
+                    -- Labels aggregated as JSON array
+                    COALESCE(
+                        JSON_AGG(DISTINCT jsonb_build_object(
+                            'label_id', l.id,
+                            'label_name', l.name
+                        )) FILTER (WHERE l.id IS NOT NULL),
+                        '[]'
+                    ) AS labels,
+                    
+                    -- Participants aggregated as JSON array
+                    COALESCE(
+                        JSON_AGG(DISTINCT jsonb_build_object(
+                            'user_id', p.id,
+                            'full_name', p.full_name,
+                            'email', p.email
+                        )) FILTER (WHERE p.id IS NOT NULL),
+                        '[]'
+                    ) AS participants
+                    
+                FROM events e
+                INNER JOIN users creator ON e.created_by = creator.id
+                LEFT JOIN event_label_inter eli ON e.id = eli.event_id
+                LEFT JOIN labels l ON eli.label_id = l.id
+                LEFT JOIN event_participants ep ON e.id = ep.event_id
+                LEFT JOIN users p ON ep.user_id = p.id
+
+                GROUP BY 
+                    e.id, 
+                    e.name, 
+                    e.description, 
+                    e.selected_date, 
+                    e.created_at, 
+                    e.updated_at, 
+                    e.will_repeat, 
+                    e.repeat_rate,
+                    e.created_by,
+                    creator.full_name,
+                    creator.email
+
+                ORDER BY e.created_at DESC;
+
+                `
             );
             return {
                 status: 200,
