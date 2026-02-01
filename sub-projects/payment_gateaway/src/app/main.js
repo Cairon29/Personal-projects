@@ -1,7 +1,9 @@
 const sendCheckout = (plan, price) => {
     console.log('calling the checkout function');
 
-    fetch("/checkout", {
+    const endpoint = plan === 'basic' ? "/checkout_bold_button" : "/checkout_bold_api_web"
+
+    fetch(endpoint, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
