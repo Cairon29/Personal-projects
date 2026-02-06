@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 import type { Request, Response } from "express";
 import express from "express";
 
@@ -17,9 +20,73 @@ const API_URL = process.env.API_URL || "https://integrations.api.bold.co"
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "app")));
 
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
+
 app.get("/api", (req: Request, res: Response) => {
     res.send("Hello World!");
 });
+
+app.post('/checkout_bold_link', async (req: Request, res: Response) => {
+    const { plan, price } = req.body
+
+    let currentNanoseconds = Date.now() * 1e6; // Convertir milisegundos a nanosegundos
+    let tenMinutesInNanoseconds = 10 * 60 * 1e9; // 10 minutos en nanosegundos
+    let expiration_date = currentNanoseconds + tenMinutesInNanoseconds;
+    const uuid = crypto.randomUUID();
+
+    try {
+        console.log("starting the link build");
+        console.log(BOLD_PAYMENT_BUTTON_API_KEY);
+        
+        const data = await fetch(`${API_URL}/online/link/v1`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `x-api-key ${BOLD_PAYMENT_BUTTON_API_KEY}`,
+            },
+            body: JSON.stringify({
+                amount_type : "CLOSE",
+                amount: {
+                    currency: "COP",
+                    taxes: [
+                        {
+                            "type": "VAT",
+                            "base": 8403,
+                            "value": 1597
+                        }
+                    ],
+                    tip_amount: 0,
+                    total_amount: price
+                },
+                callback_url: "https://http.cat/",
+                reference: uuid,
+                description: `Compra de ${plan}`,
+                expiration_date: expiration_date,
+                payment_methods: [
+                    "PSE",
+                    "CREDIT_CARD",
+                    "NEQUI",
+                    "BOTON_BANCOLOMBIA"
+                ],
+                image_url: "https://robohash.org/sad.png"
+            })
+        })
+        console.log("link build done");
+        console.log("starting the link parse");
+        
+        const json = await data.json()
+        console.log(json);
+        console.log("link parse done");
+        console.log("sending the link to the client");
+        res.status(200).json(json);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+})
 
 app.post('/checkout_bold_api_web', async (req: Request, res: Response) => {
     console.log(req.body);
@@ -100,23 +167,16 @@ app.post("/checkout_bold_button", async (req: Request, res: Response) => {
     const { plan, price } = req.body
     console.log(plan, price);
 
+    console.log('BOLD_PAYMENT_BUTTON_API_KEY:', BOLD_PAYMENT_BUTTON_API_KEY);
+    
+
+
     const data = await fetch(`${API_URL}/payments/app-checkout`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": BOLD_PAYMENT_BUTTON_API_KEY ?? "",
+            "Authorization": `x-api-key ${BOLD_PAYMENT_BUTTON_API_KEY}`,
         },
-        // body: JSON.stringify({
-        //     "amount_type": "CLOSE",
-        //     "amount": {
-        //         "currency": DIVISA,
-        //         "total_amount": price,
-        //         "tip_amount": 0
-        //     },
-        //     "description": "Payment for " + plan,
-        //     // "payment_methods": ["CREDIT_CARD", "PSE", "BOTON_BANCOLOMBIA", "NEQUI"]
-        //     "payment_methods": ["PSE"]
-        // })
         body: JSON.stringify({
             "amount": {
                 "currency": DIVISA,

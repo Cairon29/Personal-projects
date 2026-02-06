@@ -1,8 +1,12 @@
-const sendCheckout = (plan, price) => {
+function sendCheckout(plan, price) {
     console.log('calling the checkout function');
 
-    const endpoint = plan === 'basic' ? "/checkout_bold_button" : "/checkout_bold_api_web"
+    // const endpoint = plan === 'basic' ? "/checkout_bold_button" : "/checkout_bold_api_web"
+    const endpoint = "/checkout_bold_link"
+    console.log(`Sending request to: ${endpoint}`);
 
+    price = price * 3642.76
+    console.log(`plan: ${plan}, price: ${price}`);
     fetch(endpoint, {
         method: "POST",
         headers: {
@@ -15,13 +19,19 @@ const sendCheckout = (plan, price) => {
             return response.json()
         }
     }).then((data) => {
-        console.log(`data: ${data}`);
+        if (!data) return;
+        console.log(`data.payload: ${data.payload.payment_link}, url: ${data.payload.url}`);
         const { url } = data.payload
+
+        if (!url) {
+            console.log('url is not defined but payment went through');
+            return
+        }
         window.location.href = url;
     })
 }
 
-const goToCheckout = (plan) => {
+function goToCheckout(plan) {
     switch (plan) {
         case 'basic': {
             console.log('basic plan selected');
